@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -38,21 +39,25 @@ import java.util.Map;
 //--------------------------------------------------
 class PrizeData {
 
-    static  Map<String, Prize> prizeMap;
 
-    static BinaryTree prizeTree;
+    static BinaryTree fourStarTree;
+    static BinaryTree fiveStarTree;
+    static BinaryTree sixStarTree;
 
-     static void storePrizes() throws Exception {
 
-        prizeTree = new BinaryTree();            // create new binary tree
+    static void storePrizes() throws Exception {
 
-        prizeMap = new HashMap<>();                         // Creating map for Prizes to store integer and prize object
+        fourStarTree = new BinaryTree();                                          // initialize to store 4 star prizes
 
-        String fileName = "src/main/java/prizes.txt";       // The name of the file to open.
+        fiveStarTree = new BinaryTree();                                          // initialize to store 4 star prizes
 
-        String line;                                        // This will reference one line at a time
+        sixStarTree  = new BinaryTree();                                          // initialize to store 4 star prizes
 
-        try {
+        String fileName = "src/main/java/prizes.txt";                             // The name of the file to open.
+
+        String line;                                                              // This will reference one line at a time
+
+        try {                                                                     // catch file missing error
 
             FileReader fileReader = new FileReader(fileName);                     // FileReader reads text files in the default encoding.
 
@@ -62,26 +67,27 @@ class PrizeData {
 
                 String[]  individualPrize = line.split(":");                // split by colon to create array of
 
-                Prize prize = new Prize(individualPrize[0], individualPrize[1]);  // use first and second values of txt file to create prize object
 
-                prizeMap.put(individualPrize[2], prize);
+                if(individualPrize[1].compareTo("4") == 0) {          // Scenario 1:  if value is 4 star
 
-                prizeTree.addNode(individualPrize[2] , individualPrize[0]);
+                    fourStarTree.addNode(individualPrize[2] , individualPrize[0]);// store key and prize in 4 star tree
 
-           // System.out.println("key: " + individualPrize[2]  + "\t value: " +  individualPrize[0]); /******* testing  *******/
+                } else if (individualPrize[1].compareTo("5") == 0 ) { // Scenario 2: if value is 5 star
+
+                    fiveStarTree.addNode(individualPrize[2] , individualPrize[0]);// store key and prize in 5 star tree
+
+                } else if (individualPrize[1].compareTo("6") == 0) {  // Scenario 3: if value is 5 star
+
+                    sixStarTree.addNode(individualPrize[2] , individualPrize[0]); // store key and prize in 6 star tree
+                }
             }
             bufferedReader.close();                                               //  close file
-
         } catch (FileNotFoundException ex) {
             System.out.println("Unable to open file '" + fileName + "'");         // print error about opening file
         } catch (IOException ex) {
             System.out.println("Error reading file '"  + fileName + "'");         // print error about reading file
-
         }
-
-
-    } // close main
-
-} // close class
+    }
+}
 
 

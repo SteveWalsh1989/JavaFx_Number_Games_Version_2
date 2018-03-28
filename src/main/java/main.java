@@ -700,8 +700,7 @@ public class main extends Application {
 
             myTab.getTabs().add(tab3);                                                           // displays prize tab
 
-
-            displayPrizesTree(PrizeData.prizeTree.root, label_You_Won, vBox_Prizes);             // displays prizes from tree
+            displayPrizesTree(PrizeData.fourStarTree.root);                                      // displays prizes from tree
 
             hintHigher.setVisible(false);                                                        // hide hint
 
@@ -1057,44 +1056,40 @@ public class main extends Application {
      */
     private void isWinner(HBox hBox_User_Numbers){
 
-        if( g2_prize == 4) {             // user matched 4 numbers correctly
+        if( g2_prize == 4) {                                                    // user matched 4 numbers correctly
 
-            displayWinningNumbers();     // displays winning numbers
+            displayWinningNumbers();                                            // displays winning numbers
 
-            myTab.getTabs().add(tab3);   // displays prize tab
+            myTab.getTabs().add(tab3);                                          // displays prize tab
 
             System.out.println("Result: 4 Numbers guessed correctly ");         //  testing only  **/
 
-            displayPrizes(4);   // prize tab will show 6 star prizes
+            displayPrizesTree(PrizeData.fourStarTree.root);                     // displays prizes from tree
 
-        } else if( g2_prize == 5 ) {     // user matched 5 numbers correctly
+        } else if( g2_prize == 5 ) {                                            // user matched 5 numbers correctly
 
-            displayWinningNumbers();     // displays winning numbers
+            displayWinningNumbers();                                            // displays winning numbers
 
-            myTab.getTabs().add(tab3);   // displays prize tab
-
+            myTab.getTabs().add(tab3);                                          // displays prize tab
 
             System.out.println("Result: 5 Numbers guessed correctly ");         //**  testing only  **/
 
-            displayPrizes(5);   // prize tab will show 6 star prizes
+            displayPrizesTree(PrizeData.fiveStarTree.root);                     // displays prizes from tree
 
-        } else if ( g2_prize == 6) {     // user matched 6 numbers correctly
+        } else if ( g2_prize == 6) {                                            // user matched 6 numbers correctly
 
-            displayWinningNumbers();     // displays winning numbers
+            displayWinningNumbers();                                            // displays winning numbers
 
-            myTab.getTabs().add(tab3);   // displays prize tab
+            myTab.getTabs().add(tab3);                                          // displays prize tab
 
             System.out.println("Result: 6 Numbers guessed correctly ");         //**  testing only  **/
 
-            displayPrizes(6);   // prize tab will show 6 star prizes
+            displayPrizesTree(PrizeData.sixStarTree.root);                      // displays prizes from tree
 
+        } else {                                                                // else user did not win
 
-        } else {                         // else user did not win
-
-            NotWinner(hBox_User_Numbers);// run not Winner
+            NotWinner(hBox_User_Numbers);                                       // run not Winner
         }
-
-
         if(g2_prize >= 4) {              // if user guessed 4 or more numbers correctly : Won Game
 
             newLottoNumbers();           // generates new winning Numbers
@@ -1104,26 +1099,6 @@ public class main extends Application {
         }
     }
 
-    /**
-     *  revealWinner:    Not currently working when added to method isWinner above
-     *
-     *
-     *@param prizeValue - value of prize
-     */
-    public void revealWinner(int prizeValue){
-
-        myTab.getTabs().add(tab3);   // displays prize tab
-
-        displayWinningNumbers();     // displays winning numbers
-
-        System.out.println("Result: " + prizeValue + " Numbers guessed correctly ");   //**  testing only  **/
-
-        displayPrizes(prizeValue);   // prize tab will show 6 star prizes
-
-
-
-
-    }
     /**
      *  displayWinningNumbers
      *
@@ -1158,53 +1133,6 @@ public class main extends Application {
  /* ----------------------------------------------------
             Prize Tab Method
     ----------------------------------------------------  */
-
-    /**
-     *  displayPrizes
-     *
-     *
-     *  displays prizes to user based on the starValue assigned
-     *
-     *
-     *@param starValue - value user won
-     */
-    private void displayPrizes(int starValue) {
-
-         String PrizeValue = Integer.toString(starValue);      // parse starValue to string
-
-         PrizeData.prizeMap.forEach((key, value) -> {          // searches prize objects in PrizeData hashmap
-
-             if(PrizeValue.equals(value.getStarValue())) {     // checks starValue of user against Hashmap
-
-                 Button prizeButton = new Button();            // creates new button for prize
-
-                 prizeButton.setMinWidth(150);                 // sets minimum width of prize button
-
-                 prizeButton.setMinHeight(70);                 // sets minimum height of prize button
-
-                 prizeButton.setText(key);                     // changes text of button to be the key
-
-                 vBox_Prizes.getChildren().add(prizeButton);   // adds button to VBox for prizes
-
-                 prizeButton.setOnAction(e ->{                 // when clicked
-
-                     label_You_Won.setVisible(true);           // display the you won label
-
-                      vBox_Prizes.getChildren().clear();        // remove Vbox children
-
-                      vBox_Prizes.getChildren().addAll(label_You_Won,prizeButton);
-
-                      prizeButton.setText(value.getPrizeWon()); // changes text to be actual prize
-
-                      prizeButton.setStyle("-fx-background-color: #80ffbf;");   // change background color of prize selected to green
-
-                         }
-                     );
-                 }
-             }
-         );
-     }
-
     /**
      *  displayPrizesTree
      *
@@ -1213,38 +1141,37 @@ public class main extends Application {
      *
      *
      */
-    private void displayPrizesTree(Node node, Label label, VBox box) {
+    private void displayPrizesTree(Node node) {
 
-        if (node != null) {                           // loops whilst nodes are not null
+        if (node != null) {                                     // loops whilst nodes are not null
 
-            displayPrizesTree(node.leftChild,label,box );      // Traverse the left node
+            displayPrizesTree(node.leftChild );                 // Traverse the left node
 
-            Button prizeButton = new Button();            // creates new button for prize
+            Button prizeButton = new Button();                  // creates new button for prize
 
-            prizeButton.setMinWidth(100);                 // sets minimum width of prize button
+            prizeButton.setMinWidth(100);                       // sets minimum width of prize button
 
-            prizeButton.setMinHeight(45);                 // sets minimum height of prize button
+            prizeButton.setMinHeight(45);                       // sets minimum height of prize button
 
-            prizeButton.setText(node.key);                     // changes text of button to be the key
+            prizeButton.setText(node.key);                      // changes text of button to be the key
 
-            box.getChildren().add(prizeButton);   // adds button to VBox for prizes
+            vBox_Prizes.getChildren().add(prizeButton);         // adds button to VBox for prizes
 
-            prizeButton.setOnAction(e ->{                 // when clicked
+            prizeButton.setOnAction(e ->{                       // when clicked
 
-                        label.setVisible(true);           // display the you won label
+                label_You_Won.setVisible(true);                 // display the you won label
 
-                        box.getChildren().clear();        // remove Vbox children
+                vBox_Prizes.getChildren().clear();              // remove Vbox children
 
-                        box.getChildren().addAll(label,prizeButton);
+                vBox_Prizes.getChildren().addAll(label_You_Won,prizeButton);
 
-                        prizeButton.setText(node.prize); // changes text to be actual prize
+                prizeButton.setText(node.prize);                // changes text to be actual prize
 
-                        prizeButton.setStyle("-fx-background-color: #80ffbf;");   // change background color of prize choosen to green
-
-                    }
+                prizeButton.setStyle("-fx-background-color: #80ffbf;");   // change background color of prize choosen to green
+                 }
             );
 
-            displayPrizesTree(node.rightChild,label,box );     // Traverse the right node
+            displayPrizesTree(node.rightChild);                // Traverse the right node
         }
 
 
