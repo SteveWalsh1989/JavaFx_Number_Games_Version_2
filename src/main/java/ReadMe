@@ -1,6 +1,6 @@
 
   To Do:
-          1: Only display appropriate prizes ( 4,5 or 6 star ) : currently displays all
+          1: Only display appropriate prizes ( 4,5 or 6 star ) : currently displays all for game 1 : not implemented for game 2 yet
           2: Add field to store winner's name, store name and prize in arrayList of customer objects
           3: Create a tab 4 for winners
           4: list winners based on descending order of name

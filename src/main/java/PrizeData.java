@@ -36,13 +36,13 @@ import java.util.Map;
 //--------------------------------------------------
 // CLASS
 //--------------------------------------------------
-public class PrizeData {
+class PrizeData {
 
     static  Map<String, Prize> prizeMap;
 
     static BinaryTree prizeTree;
 
-    public static void storePrizes() throws Exception {
+     static void storePrizes() throws Exception {
 
         prizeTree = new BinaryTree();            // create new binary tree
 
@@ -64,10 +64,11 @@ public class PrizeData {
 
                 Prize prize = new Prize(individualPrize[0], individualPrize[1]);  // use first and second values of txt file to create prize object
 
-                prizeMap.put(individualPrize[2], prize);                          /** old code: store third value from text file as key and prize object as value */
+                prizeMap.put(individualPrize[2], prize);
+
                 prizeTree.addNode(individualPrize[2] , individualPrize[0]);
 
-           // System.out.println("key: " + individualPrize[2]  + "\t value: " +  individualPrize[0]); /******* test  *******/
+           // System.out.println("key: " + individualPrize[2]  + "\t value: " +  individualPrize[0]); /******* testing  *******/
             }
             bufferedReader.close();                                               //  close file
 
