@@ -77,7 +77,7 @@ import java.util.Random;
  *------------------------------------------------------------------------------------------------
  * Tab 4 : Winners
  *
- *      Displays opton to view winners in asending / decending order
+ *      Displays option to view winners in ascending / descending order
  *      Displays Winner name + prize to user
  *
  * ------------------------------------------------------------------------------------------------
@@ -604,9 +604,9 @@ public class main extends Application {
      */
      private int generateWinningNumber() {
 
-        Random rand = new Random();                        // create new random object
+        Random rand = new Random();                       // create new random object
 
-        int random = rand.nextInt(100)+1 ;            // set random variabel tobe random number between 0 - 100
+        int random = rand.nextInt(100)+1 ;         // set random variable tobe random number between 0 - 100
 
         System.out.println("Winning Number: " + random);  // Testing: prints the winning number to console
 
@@ -772,7 +772,7 @@ public class main extends Application {
      * guess button
      *
      * stores input from Textfield when guess button is pressed
-     * Validates inpu ot be off type integer
+     * Validates input to be off type integer
      * Clears testField if type is incorrect
      *
      * @param inputField                - TextField for user input
@@ -922,7 +922,7 @@ public class main extends Application {
         label_WinningNum_1.setVisible(false);            //
         label_WinningNum_2.setVisible(false);            //
         label_WinningNum_3.setVisible(false);            //
-        label_WinningNum_4.setVisible(false);            // hide winnng number labels
+        label_WinningNum_4.setVisible(false);            // hide winning number labels
         label_WinningNum_5.setVisible(false);            //
         label_WinningNum_6.setVisible(false);            //
         label_WinningNum_title.setVisible(false);        //
@@ -1196,7 +1196,7 @@ public class main extends Application {
 
                       prizeButton.setText(value.getPrizeWon()); // changes text to be actual prize
 
-                      prizeButton.setStyle("-fx-background-color: #80ffbf;");   // change background color of prize choosen to green
+                      prizeButton.setStyle("-fx-background-color: #80ffbf;");   // change background color of prize selected to green
 
                          }
                      );
