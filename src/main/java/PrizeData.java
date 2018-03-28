@@ -67,7 +67,6 @@ class PrizeData {
 
                 String[]  individualPrize = line.split(":");                // split by colon to create array of
 
-
                 if(individualPrize[1].compareTo("4") == 0) {          // Scenario 1:  if value is 4 star
 
                     fourStarTree.addNode(individualPrize[2] , individualPrize[0]);// store key and prize in 4 star tree

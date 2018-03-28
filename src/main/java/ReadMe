@@ -1,14 +1,12 @@
 
   To Do:
-          1: Only display appropriate prizes ( 4,5 or 6 star ) : currently displays all for game 1 : not implemented for game 2 yet
-          2: Add field to store winner's name, store name and prize in arrayList of customer objects
+          2: store name and prize in arrayList of customer objects
           3: Create a tab 4 for winners
           4: list winners based on descending order of name
           5: list winners based on ascending order of name
           6: add button to remove winner based on name
           7: persist winners to file using serialisation
           8: create junit testing
-          9: split up into better classes ie: add controller class + separate class for each game
 
 
 

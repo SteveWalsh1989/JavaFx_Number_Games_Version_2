@@ -17,7 +17,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -140,9 +139,14 @@ public class main extends Application {
         Tab 3:  prize page variables
     ---------------------------------------------------- */
 
-    private VBox vBox_Prizes;   // Vbox for displaying prizes
-    private static Label label_Prize_Title;   //
+    private VBox vBox_Tab3;                   //
+    private HBox hBox_Ask_Winner;             // stucture of tab 3 to
+    private VBox vBox_Tab3_Top;               // bottom structure
+    private VBox vBox_Tab3_bottom;            // bottom structure
+    private static Label label_Prize_Title;   // and display prizes
     private static Label label_You_Won;       //
+    private static Label label_Ask_Winner;
+    private static Label label_Congratulations;
 
 
 
@@ -172,7 +176,7 @@ public class main extends Application {
         Button g1_start = new Button("Start");    // start button
         Button g1_reset = new Button("Reset");    // Reset button
         Button g1_quit  = new Button("Quit");     // Quit button
-        Button g1_guess = new Button("Submit");    // Guess button
+        Button g1_guess = new Button("Submit");   // Guess button
         Button g1_clear = new Button("Clear");    // Clear button
 
         // labels
@@ -235,17 +239,37 @@ public class main extends Application {
         //      Tab 3: Prizes
         //-----------------------------
 
-        tab3 = new Tab();                 // create second lab for game 2
+        tab3 = new Tab();                                                       // create second lab for game 2
 
-        tab3.setText("Prizes");           // set text of tab 2
+        tab3.setText("Prizes");                                                 // set text of tab 2
 
-        tab3.setClosable(false);          // prevent user from being able to close the tab
+        label_Ask_Winner = new Label("Enter your name: ");                 // label to ask winners name
 
-         vBox_Prizes = new VBox();    // create new vBox for the UserGuess and winningLottoNumbers labels
+        label_Congratulations =  new Label("Congratulations You Are A Winner");
 
-        tab3.setContent(vBox_Prizes);     // Adding to content to prize tab
+        TextField storeWinnerName = new TextField();                            // create new text input field
 
-        root.setTop(myTab);               // adding the tab to the Border pane root
+        storeWinnerName.setPromptText("John Smith");                            // adding text prompt to text input field
+
+        tab3.setClosable(false);                                                // prevent user from being able to close the tab
+
+        vBox_Tab3_Top = new VBox();                                             // top structure
+
+        hBox_Ask_Winner = new HBox();                                           // stores label and text input
+
+        vBox_Tab3_Top.getChildren().addAll(hBox_Ask_Winner );                   // add label and hbox
+
+        hBox_Ask_Winner.getChildren().addAll(label_Ask_Winner, storeWinnerName);// add label and textinput
+
+        vBox_Tab3_bottom = new VBox();                                          // create new vBox for the UserGuess and winningLottoNumbers labels
+
+        vBox_Tab3 = new VBox();                                                 // main vbox
+
+        vBox_Tab3.getChildren().addAll(vBox_Tab3_Top, vBox_Tab3_bottom);        // add smaller boxes to main vbox
+
+        tab3.setContent(vBox_Tab3);                                             // Adding to content to prize tab
+
+        root.setTop(myTab);                                                     // adding the tab to the Border pane root
 
 
 
@@ -532,20 +556,31 @@ public class main extends Application {
 
         label_Prize_Title = new Label("SELECT AN OPTION TO REVEAL YOUR PRIZE: "); // title label for prize page
 
-        label_You_Won = new Label("Congratulations, you have won a: ");           // label to show what user won
+        label_You_Won     = new Label("Congratulations, you have won a: ");           // label to show what user won
 
         label_You_Won.setVisible(false);                                               // hide the label until user selects prize.
 
 
         //-----------------------------
-        //     Main VBox
+        //     Ask Winner name HBox
+        //-----------------------------
+        label_Ask_Winner.setAlignment(Pos.CENTER);  // center align main label
+
+        hBox_Ask_Winner.setAlignment(Pos.CENTER);
+
+        hBox_Ask_Winner.setSpacing(20);
+
+        hBox_Ask_Winner.setPadding(new Insets(25, 10, 25, 10));
+
+        //-----------------------------
+        //     Prize VBox
         //-----------------------------
 
-        vBox_Prizes.getChildren().addAll(label_Prize_Title,label_You_Won) ; // title and youWon added to the top of the VBox
+        vBox_Tab3_bottom.getChildren().addAll(label_Prize_Title,label_You_Won) ; // title and youWon added to the top of the VBox
 
-        vBox_Prizes.setAlignment(Pos.CENTER);    // positions vBox in the center
+        vBox_Tab3_bottom.setAlignment(Pos.CENTER);    // positions vBox in the center
 
-        vBox_Prizes.setSpacing(20);              // set spacing between nodes in VBox
+        vBox_Tab3_bottom.setSpacing(20);              // set spacing between nodes in VBox
 
 
     } // close primary stage
@@ -1155,15 +1190,15 @@ public class main extends Application {
 
             prizeButton.setText(node.key);                      // changes text of button to be the key
 
-            vBox_Prizes.getChildren().add(prizeButton);         // adds button to VBox for prizes
+            vBox_Tab3_bottom.getChildren().add(prizeButton);         // adds button to VBox for prizes
 
             prizeButton.setOnAction(e ->{                       // when clicked
 
                 label_You_Won.setVisible(true);                 // display the you won label
 
-                vBox_Prizes.getChildren().clear();              // remove Vbox children
+                vBox_Tab3_bottom.getChildren().clear();              // remove Vbox children
 
-                vBox_Prizes.getChildren().addAll(label_You_Won,prizeButton);
+                vBox_Tab3_bottom.getChildren().addAll(label_You_Won,prizeButton);
 
                 prizeButton.setText(node.prize);                // changes text to be actual prize
 
