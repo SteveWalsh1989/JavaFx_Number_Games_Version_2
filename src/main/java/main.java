@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -158,11 +159,17 @@ public class main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
         /* ----------------------------------------------------
              ****** TESTING ******   ****** TESTING ******
             ---------------------------------------------------- */
-            createWinner();
+            //createWinner();
+
+            //winnerList.persistWinnerListToFile();
+
+            winnerList.readWinners();
+
+
 
 
 
@@ -1239,44 +1246,7 @@ public class main extends Application {
     }
 
 
-    /**
-     *      TEST METHOD
-     *
-     *      Testing if can create a winner, save to file to get format
-     *
-     *      Works : will create winner, add the name and prize, add that to the winnerList
-     *      and saves to file
-     *
-     */
-        public void createWinner(){
 
-            winner w1 = new winner();            // create new winner
-
-            w1.setName("John");                 // set name
-
-            w1.setPrize("Holiday to new York"); // set prize
-
-            winner w2 = new winner("sarah", "holiday");
-            winner w3 = new winner("jane", "iphone");
-            winner w4 = new winner("frank", "tv");
-            winner w5 = new winner("steve", "cake");
-
-
-            winnerList.winnersList.add(w1);     // add to winner list
-            winnerList.winnersList.add(w2);     // add to winner list
-            winnerList.winnersList.add(w3);     // add to winner list
-            winnerList.winnersList.add(w4);     // add to winner list
-            winnerList.winnersList.add(w5);     // add to winner list
-
-            try {
-
-                winnerList.persistWinnerListToFile();
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        }
 
 
 

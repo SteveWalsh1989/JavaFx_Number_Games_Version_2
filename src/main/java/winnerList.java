@@ -1,7 +1,4 @@
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -25,32 +22,63 @@ import java.util.ArrayList;
  *
  * ------------------------------------------------------------------------------------------------
  **/
-public class winnerList {
+public class winnerList implements Serializable{
 
    public static  ArrayList<winner> winnersList = new ArrayList<>();  // create arrayList to store winners
 
-    public void readWinners()throws Exception{
-
-        String fileName = "src/docs/winnerList.bin";                                  // create file to store winners to
+    static String fileName = "src/docs/winnerList.bin";
 
 
 
+    /**
+     * readWinners
+     *
+     * reads details of winner objects to file using serialisation
+     * and stores in arrayList winnersList
+     *
+     * @throws FileNotFoundException
+     */
+    public static void readWinners()throws Exception{
+
+    try {
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));     // create new input stream to the file
+
+       winnersList = (ArrayList) is.readObject();  // store winner object in arrayList : NOT WORKING
+
+       // winner w =  (winner ) is.readObject();
 
 
+        is.close();                                                                      // close input stream
+
+    } catch (IOException e) {                                                            // catch exception if file not found
+    e.printStackTrace();
+    } catch (ClassNotFoundException e) {                                                 // catch exception if class not found
+        e.printStackTrace();
     }
 
 
-    public static void persistWinnerListToFile() throws FileNotFoundException {
+    for ( int  i = 0; i < winnersList.size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
 
-        String fileName = "src/docs/winnerList.bin";                                  // create file to store winners to
+        System.out.println("Winner: " + i + "\tName: " + winnersList.get(i).getName() + "\tPrize: " + winnersList.get(i).getPrize());
+    }
+
+    }
+
+    /**
+     * persistWinnerListToFile
+     *
+     * Saves details of winner objects to file using serialisation
+     *
+     * @throws FileNotFoundException
+     */
+    public static void persistWinnerListToFile() throws IOException {
 
         try {
             ObjectOutputStream os = new ObjectOutputStream( new FileOutputStream(fileName)); // open output stream to convert data
 
-            for ( int i = 0; i < winnersList.size(); i++ ){                                  // loop through all winners
+            os.writeObject(winnersList);
 
-                os.writeObject(winnersList.get(i));                                          // write each to file
-            }
+
         } catch (IOException e) {                                                            // catch exception if file not found
             e.printStackTrace();
         }
