@@ -6,7 +6,6 @@
           5: list winners based on ascending order of name
           6: add button to remove winner based on name
           7: persist winners to file using serialisation
-          8: create junit testing
 
 
 

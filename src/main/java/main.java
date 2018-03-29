@@ -656,7 +656,7 @@ public class main extends Application {
      * @param input - input field
      * @return userInput - returns the user input if valid
      */
-    private int storeInput(TextField input) {
+    private static int storeInput(TextField input) {
 
         try {
             int userInput = Integer.parseInt(input.getText());  // Converts the string input form user guess into an int and stores as guess
@@ -686,7 +686,7 @@ public class main extends Application {
      * @param userNum    - user guess
      * @param winningNum - number needed to win game
      */
-     private static void compareNumbers(int userNum, int winningNum) {
+     public static void compareNumbers(int userNum, int winningNum) {
 
         if (userNum < winningNum) {            // compare if user number is lower than winning number
 
@@ -708,7 +708,7 @@ public class main extends Application {
     /**
      * checkWinner
      *
-     * checks winne of game
+     * checks winner of game
      *
      * @param num_remaining_guess_label - remaining guesses left
      */
@@ -868,7 +868,7 @@ public class main extends Application {
      * @param size : size of array you wish to fill
      * @return numberArray   : returns integer array
      */
-    private static int[] generateRandomNumberArray(int size) {
+    public static int[] generateRandomNumberArray(int size) {
 
         int[] numberArray = new int[size];                            // creates new array to store the winning numbers
 
