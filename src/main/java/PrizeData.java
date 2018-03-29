@@ -8,9 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -18,15 +16,15 @@ import java.util.Objects;
  *
  * Module: Object Orientated programming
  *
- * Assignment 1: JavaFx
+ * Assignment 2: Maven, using imported Jar and TreeLists
  *
  * Steve Walsh R00151053
  *
- * Last Update:  22/2/18
+ * Last Update:  29/3/18
  *
  * ------------------------------------------------------------------------------------------------
  *
- * Hashmap data structure to store prizes
+ * Tree data structure to store prizes
  *
  * 
  *
@@ -53,7 +51,7 @@ class PrizeData {
 
         sixStarTree  = new BinaryTree();                                          // initialize to store 4 star prizes
 
-        String fileName = "src/main/java/prizes.txt";                             // The name of the file to open.
+        String fileName = "src/docs/prizes.txt";                             // The name of the file to open.
 
         String line;                                                              // This will reference one line at a time
 

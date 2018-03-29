@@ -17,6 +17,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -87,6 +88,8 @@ import java.util.Random;
 //--------------------------------------------------
 public class main extends Application {
 
+
+
     /* ----------------------------------------------------
         Game 1 :  Variables
        ---------------------------------------------------- */
@@ -156,6 +159,14 @@ public class main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        /* ----------------------------------------------------
+             ****** TESTING ******   ****** TESTING ******
+            ---------------------------------------------------- */
+            createWinner();
+
+
+
+
 
 
          /* ----------------------------------------------------
@@ -1174,7 +1185,7 @@ public class main extends Application {
      *
      *  displays prizes to user based on the starValue assigned
      *
-     *
+     *@param node : takes in node of the tree to search
      */
     private void displayPrizesTree(Node node) {
 
@@ -1208,8 +1219,66 @@ public class main extends Application {
 
             displayPrizesTree(node.rightChild);                // Traverse the right node
         }
+    }
+
+    /**
+     * storeWinnerName
+     *
+     * Adds Winner name to the Winners array list
+     *
+     * @param input : input of name from winner
+     */
+    public void storeWinnerName(TextField input){
+
+
+
+
+
 
 
     }
+
+
+    /**
+     *      TEST METHOD
+     *
+     *      Testing if can create a winner, save to file to get format
+     *
+     *      Works : will create winner, add the name and prize, add that to the winnerList
+     *      and saves to file
+     *
+     */
+        public void createWinner(){
+
+            winner w1 = new winner();            // create new winner
+
+            w1.setName("John");                 // set name
+
+            w1.setPrize("Holiday to new York"); // set prize
+
+            winner w2 = new winner("sarah", "holiday");
+            winner w3 = new winner("jane", "iphone");
+            winner w4 = new winner("frank", "tv");
+            winner w5 = new winner("steve", "cake");
+
+
+            winnerList.winnersList.add(w1);     // add to winner list
+            winnerList.winnersList.add(w2);     // add to winner list
+            winnerList.winnersList.add(w3);     // add to winner list
+            winnerList.winnersList.add(w4);     // add to winner list
+            winnerList.winnersList.add(w5);     // add to winner list
+
+            try {
+
+                winnerList.persistWinnerListToFile();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
 
 } // close class
