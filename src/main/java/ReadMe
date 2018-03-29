@@ -1,11 +1,10 @@
 
   To Do:
-          2: store name and prize in arrayList of customer objects
-          3: Create a tab 4 for winners
-          4: list winners based on descending order of name
-          5: list winners based on ascending order of name
-          6: add button to remove winner based on name
-          7: persist winners to file using serialisation
+          1: store name and prize in arrayList of customer objects
+          2: Create a tab 4 for winners
+          3: list winners based on descending/ascending order of name
+          4: add button to remove winner based on name
+          5: persist winners to file using serialisation
 
 
 
