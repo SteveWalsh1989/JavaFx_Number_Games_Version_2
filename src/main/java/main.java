@@ -151,6 +151,7 @@ public class main extends Application {
     private static Label label_You_Won;       //
     private static Label label_Ask_Winner;
     private static Label label_Congratulations;
+    private static TextField storeWinnerName;
 
 
 
@@ -161,19 +162,10 @@ public class main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         /* ----------------------------------------------------
-             ****** TESTING ******   ****** TESTING ******
+            read in arraylist of winners from file
             ---------------------------------------------------- */
-            //createWinner();
-
-            //winnerList.persistWinnerListToFile();
 
             winnerList.readWinners();
-
-
-
-
-
-
 
 
          /* ----------------------------------------------------
@@ -263,11 +255,15 @@ public class main extends Application {
 
         label_Ask_Winner = new Label("Enter your name: ");                 // label to ask winners name
 
+        label_Ask_Winner.setVisible(false);                                     // hide name input label
+
         label_Congratulations =  new Label("Congratulations You Are A Winner");
 
-        TextField storeWinnerName = new TextField();                            // create new text input field
+        storeWinnerName = new TextField();                            // create new text input field
 
         storeWinnerName.setPromptText("John Smith");                            // adding text prompt to text input field
+
+        storeWinnerName.setVisible(false);                                      // hide text field for name input
 
         tab3.setClosable(false);                                                // prevent user from being able to close the tab
 
@@ -1214,7 +1210,11 @@ public class main extends Application {
 
                 label_You_Won.setVisible(true);                 // display the you won label
 
-                vBox_Tab3_bottom.getChildren().clear();              // remove Vbox children
+                label_Ask_Winner.setVisible(true);              // display label asking winner name
+
+                storeWinnerName.setVisible(true);               // hide text field for name input
+
+                vBox_Tab3_bottom.getChildren().clear();         // remove Vbox children
 
                 vBox_Tab3_bottom.getChildren().addAll(label_You_Won,prizeButton);
 

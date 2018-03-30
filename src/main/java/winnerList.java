@@ -43,10 +43,7 @@ public class winnerList implements Serializable{
     try {
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));     // create new input stream to the file
 
-       winnersList = (ArrayList) is.readObject();  // store winner object in arrayList : NOT WORKING
-
-       // winner w =  (winner ) is.readObject();
-
+       winnersList = (ArrayList) is.readObject();                                        // store winner object in arrayList
 
         is.close();                                                                      // close input stream
 
@@ -56,11 +53,10 @@ public class winnerList implements Serializable{
         e.printStackTrace();
     }
 
-
-    for ( int  i = 0; i < winnersList.size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
-
-        System.out.println("Winner: " + i + "\tName: " + winnersList.get(i).getName() + "\tPrize: " + winnersList.get(i).getPrize());
-    }
+   // for ( int  i = 0; i < winnersList.size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
+   //
+   //      System.out.println("Winner: " + i + "\tName: " + winnersList.get(i).getName() + "\tPrize: " + winnersList.get(i).getPrize());
+   //  }
 
     }
 
