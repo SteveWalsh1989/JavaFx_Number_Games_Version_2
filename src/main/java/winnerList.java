@@ -53,10 +53,7 @@ public class winnerList implements Serializable{
         e.printStackTrace();
     }
 
-    for ( int  i = 0; i < winnersList.size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
 
-        System.out.println("Winner: " + i + "\tName: " + winnersList.get(i).getName() + "\tPrize: " + winnersList.get(i).getPrize());
-     }
 
     }
 
@@ -79,5 +76,8 @@ public class winnerList implements Serializable{
             e.printStackTrace();
         }
     }
+
+
+
 
 }

@@ -161,12 +161,21 @@ public class main extends Application {
         Tab 4:  Winner page variables
     ---------------------------------------------------- */
     private VBox vBox_tab4;                                        // main structure of winner tab
+    private VBox vBox_WinnersDetails;                              // holds winners details
 
+    private HBox winnerTitle;                                      // holds title pf page
+    private HBox displayWinnerOptions;                             // show buttons for different display types
+    private HBox deleteWinner;                                     // store button and field to delete winner from list
+
+    private static Label label_winners_title;                      // title of page
     private static Label label_Winners;                            // and display prizes
+    private static Label label_delete_winner;                      // prompt
 
     private static Button winner_displayAscending;                 // display winners in ascending order
     private static Button winner_displayDescending;                // display winners in descending order
+    private static Button deletewinner;                            // delete winner
 
+    private static TextField storeWinnerIndex;                     // store winner name to be deleted
 
 
     public static void main(String[] args) {
@@ -175,8 +184,15 @@ public class main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+
+
+
+
+
+
         /* ----------------------------------------------------
-            read in arraylist of winners from file
+            read in array list of winners from file
             ---------------------------------------------------- */
 
             winnerList.readWinners();
@@ -299,6 +315,9 @@ public class main extends Application {
 
         root.setTop(myTab);                                                     // adding the tab to the Border pane root
 
+
+
+
         //-----------------------------
         //      Tab 4: Winners
         //-----------------------------
@@ -311,9 +330,42 @@ public class main extends Application {
 
         vBox_tab4 = new VBox();                                                 // vbox to display winner details
 
-        tab4.setContent(vBox_tab4);                                             // set V box : will add button to this later that will start the game
+        label_winners_title = new Label("Winners List");                   // create label to hold winner page title text
 
-        root.setTop(myTab);                                                     // adding the tab to the Border pane root
+        winnerTitle = new HBox();                                               // create new hBox to store title
+
+        winnerTitle.getChildren().add(label_winners_title);                     // add label to heading hBox
+
+        displayWinnerOptions = new HBox();                                      // hbox to store display options
+
+        winner_displayAscending = new Button("Ascending Order");           // option 1 : display ascending
+
+        winner_displayDescending = new Button("Descending Order");         // option 2 : display descending
+
+        displayWinnerOptions.getChildren().addAll(winner_displayAscending,winner_displayDescending);
+
+        deleteWinner = new HBox();
+
+        label_delete_winner = new Label("Delete winner by entering index"); // prompt user to enter number of winner to delete
+
+        storeWinnerIndex = new TextField();                                      // create new textfield to store index
+
+        storeWinnerIndex.setPromptText("EG: 1");                                 // set prompt of text field with example
+
+        deletewinner = new Button("Submit");
+
+        deleteWinner.getChildren().addAll(label_delete_winner,storeWinnerIndex,deletewinner); // add label and textfield to hbox
+
+        vBox_WinnersDetails = new VBox();                                        // store winners details
+
+        vBox_tab4.getChildren().addAll(winnerTitle,displayWinnerOptions,deleteWinner,vBox_WinnersDetails); // add all structures to main vbox
+
+        tab4.setContent(vBox_tab4);                                              // set V box
+
+        root.setTop(myTab);                                                      // adding the tab to the Border pane root
+
+
+        myTab.getTabs().add(tab4);                              /** add the winner tab to the Tab pane  REMOVE LATER */
 
 
 
@@ -626,6 +678,85 @@ public class main extends Application {
 
         vBox_Tab3_bottom.setSpacing(20);              // set spacing between nodes in VBox
 
+
+
+     /*
+       -----------------------
+         Winner Screen Layout
+       -----------------------
+     */
+        winnerTitle.setAlignment(Pos.CENTER);                                               // position title to center
+
+        winnerTitle.setPadding(new Insets(15,0,15,0));               // set padding
+
+        displayWinnerOptions.setAlignment(Pos.CENTER);                                      // position display options to center
+
+        displayWinnerOptions.setPadding(new Insets(15,0,15,0));     // set padding
+
+        winner_displayAscending.setMinWidth(100);                                           // set width
+
+        winner_displayDescending.setMinWidth(100);                                          // set width
+
+        winner_displayAscending.setMinHeight(40);                                           // set height
+
+        winner_displayDescending.setMinHeight(40);                                          // set width
+
+        winner_displayAscending.setPadding(new Insets(0,30,0,30));   // set padding
+
+        winner_displayDescending.setPadding(new Insets(0,30,0,30));  // set padding
+
+        deleteWinner.setAlignment(Pos.CENTER);                                              // position delete HBox to center
+
+        deleteWinner.setPadding(new Insets(15,0,15,0));              // set padding
+
+        storeWinnerIndex.setMaxWidth(50);                                                   // set width
+
+        deletewinner.setMinWidth(50);
+        deletewinner.setPadding(new Insets(5,20,5,20));
+
+        vBox_WinnersDetails.setAlignment(Pos.CENTER);                                       // position winner details to center
+
+
+
+           /*
+            ----------------------------------------------------
+             Winner tab : Button Actions
+            ----------------------------------------------------
+             */
+
+        //------------------------//
+        // Ascending Order Button //
+        //------------------------//
+        winner_displayAscending.setOnAction(e -> {                           // Displays winners details ascending
+
+            reorderWinnersAscending();                                       // reorder winnersList in ascending order
+
+            displayWinnerDetails();                                          // displays winners details
+        });
+
+        //-------------------------//
+        // Descending Order Button //
+        //-------------------------//
+        winner_displayDescending.setOnAction(e -> {                          // Displays winners details Descending
+
+            reorderWinnersDescending();                                      // reorder winnersList in descending order
+
+            displayWinnerDetails();                                          // displays winners details
+        });
+
+
+        //-------------------------//
+        // Delete Button //
+        //-------------------------//
+        deletewinner.setOnAction(e -> {                          // Displays winners details Descending
+
+            try {
+                removeWinner();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        });
 
 
 
@@ -1327,9 +1458,70 @@ public class main extends Application {
           Winner tab Methods
     ----------------------------------------------------  */
 
+    /**
+     * displayWinnerAscendingOrder
+     *
+     * displays winners in ascending order
+     */
+    public void reorderWinnersAscending(){
+
+
+    }
+    /**
+     * displayWinnerDesscendingOrder
+     *
+     * displays winners in descending order
+     */
+    public void reorderWinnersDescending(){
 
 
 
+    }
+
+    public void displayWinnerDetails(){
+
+        vBox_WinnersDetails.getChildren().clear();                  // clears vbox
+
+        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {   // loop through all elements of winner arrayList
+
+            Label DisplayWinner = new Label();                      // creates new button for prize
+
+            DisplayWinner.setMinWidth(100);                         // sets minimum width of prize button
+
+            DisplayWinner.setMinHeight(45);                         // sets minimum height of prize button
+
+            DisplayWinner.setText(i+1 + "\t" + winnerList.winnersList.get(i).getName());  // changes text of button to be name of winner and index+1
+
+            vBox_WinnersDetails.getChildren().add(DisplayWinner);         // adds label to VBox for winners
+
+        }
+    }
+
+    /**
+     * removeWinner
+     *
+     * Deletes winner from winnersList
+     *
+     */
+    public void removeWinner() throws IOException {
+
+        int winnerIndex=-1;
+
+        try{
+            winnerIndex = Integer.parseInt(storeWinnerIndex.getText());                 // stores the next integer added to the textfield as the user guess
+
+        }catch(NumberFormatException e){                                                // catch if input is not the correct type of integer
+
+            storeWinnerIndex.clear();                                                   // clear input field of incorrect type entered
+        }
+            winnerList.winnersList.remove((winnerIndex - 1));                           // removes winner at index : NOT WORKING
+
+        storeWinnerIndex.clear();                                                       // clear textfield
+
+        displayWinnerDetails();                                                         // show new list
+
+        winnerList.persistWinnerListToFile();                                           // save new list to file
+    }
 
 
 
