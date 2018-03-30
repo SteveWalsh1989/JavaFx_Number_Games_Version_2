@@ -34,7 +34,7 @@ import java.util.Random;
  *
  *      Steve Walsh R00151053
  *
- *      Last Update:  28/3/18
+ *      Last Update:  30/3/18
  *
  * ------------------------------------------------------------------------------------------------
  * Tab 1 : Game 1 : Guessing game
@@ -186,11 +186,6 @@ public class main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-
-
-
-
-
         /* ----------------------------------------------------
             read in array list of winners from file
             ---------------------------------------------------- */
@@ -338,9 +333,9 @@ public class main extends Application {
 
         displayWinnerOptions = new HBox();                                      // hbox to store display options
 
-        winner_displayAscending = new Button("Ascending Order");           // option 1 : display ascending
+        winner_displayAscending = new Button("Order by Name");           // option 1 : Order by Name
 
-        winner_displayDescending = new Button("Descending Order");         // option 2 : display descending
+        winner_displayDescending = new Button("Order by Prize");         // option 2 : Order by Prize
 
         displayWinnerOptions.getChildren().addAll(winner_displayAscending,winner_displayDescending);
 
@@ -407,7 +402,7 @@ public class main extends Application {
         //    labels Layout
         //-----------------------------
         game_1_grid.add(hintHigher, 10, 6, 1, 1);                   // higher label hint
-        game_1_grid.add(hintLower,  10, 6, 1, 1);                    // lower  label hint
+        game_1_grid.add(hintLower,  10, 6, 1, 1);                   // lower  label hint
 
         //------------------------------------------
         //   Components visibility at program start
@@ -652,7 +647,7 @@ public class main extends Application {
 
         label_Prize_Title = new Label("SELECT AN OPTION TO REVEAL YOUR PRIZE: "); // title label for prize page
 
-        label_You_Won     = new Label("Congratulations, you have won a: ");           // label to show what user won
+        label_You_Won     = new Label("Congratulations, you have won a: ");       // label to show what user won
 
         label_You_Won.setVisible(false);                                               // hide the label until user selects prize.
 
@@ -662,7 +657,7 @@ public class main extends Application {
         //-----------------------------
         label_Ask_Winner.setAlignment(Pos.CENTER);  // center align main label
 
-        hBox_Ask_Winner.setAlignment(Pos.CENTER);
+        hBox_Ask_Winner.setAlignment(Pos.CENTER);   // center align
 
         hBox_Ask_Winner.setSpacing(20);
 
@@ -689,9 +684,10 @@ public class main extends Application {
 
         winnerTitle.setPadding(new Insets(15,0,15,0));               // set padding
 
-        displayWinnerOptions.setAlignment(Pos.CENTER);                                      // position display options to center
+        displayWinnerOptions.setAlignment(Pos.CENTER);                                 // position display options to center
 
         displayWinnerOptions.setPadding(new Insets(15,0,15,0));     // set padding
+
 
         winner_displayAscending.setMinWidth(100);                                           // set width
 
@@ -714,8 +710,8 @@ public class main extends Application {
         deletewinner.setMinWidth(50);
         deletewinner.setPadding(new Insets(5,20,5,20));
 
-        vBox_WinnersDetails.setAlignment(Pos.CENTER);                                       // position winner details to center
-
+        vBox_WinnersDetails.setAlignment(Pos.CENTER_LEFT);                                       // position winner details to center
+        vBox_WinnersDetails.setPadding(new Insets(5,20,5,160));
 
 
            /*
@@ -729,7 +725,7 @@ public class main extends Application {
         //------------------------//
         winner_displayAscending.setOnAction(e -> {                           // Displays winners details ascending
 
-            reorderWinnersAscending();                                       // reorder winnersList in ascending order
+            reorderWinnersName();                                            // reorder winnersList by name alphabetically
 
             displayWinnerDetails();                                          // displays winners details
         });
@@ -739,7 +735,7 @@ public class main extends Application {
         //-------------------------//
         winner_displayDescending.setOnAction(e -> {                          // Displays winners details Descending
 
-            reorderWinnersDescending();                                      // reorder winnersList in descending order
+            reorderWinnersPrize();                                           // reorder winnersList by prize alphabetically
 
             displayWinnerDetails();                                          // displays winners details
         });
@@ -1463,7 +1459,7 @@ public class main extends Application {
      *
      * displays winners in ascending order
      */
-    public void reorderWinnersAscending(){
+    public void reorderWinnersName(){
 
 
     }
@@ -1472,7 +1468,7 @@ public class main extends Application {
      *
      * displays winners in descending order
      */
-    public void reorderWinnersDescending(){
+    public void reorderWinnersPrize(){
 
 
 
@@ -1482,6 +1478,7 @@ public class main extends Application {
 
         vBox_WinnersDetails.getChildren().clear();                  // clears vbox
 
+
         for(int i = 0; i < winnerList.winnersList.size(); i++ ) {   // loop through all elements of winner arrayList
 
             Label DisplayWinner = new Label();                      // creates new button for prize
@@ -1490,7 +1487,8 @@ public class main extends Application {
 
             DisplayWinner.setMinHeight(45);                         // sets minimum height of prize button
 
-            DisplayWinner.setText(i+1 + "\t" + winnerList.winnersList.get(i).getName());  // changes text of button to be name of winner and index+1
+            DisplayWinner.setText(i+1 + "\t" + winnerList.winnersList.get(i).getName()
+                                   +  "\t\t" + winnerList.winnersList.get(i).getPrize()); // changes text of button to be name of winner and index+1
 
             vBox_WinnersDetails.getChildren().add(DisplayWinner);         // adds label to VBox for winners
 
