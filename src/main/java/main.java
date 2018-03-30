@@ -19,9 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 
 /**
@@ -744,7 +742,7 @@ public class main extends Application {
         //-------------------------//
         // Delete Button //
         //-------------------------//
-        deletewinner.setOnAction(e -> {                          // Displays winners details Descending
+        deletewinner.setOnAction(e -> {                                     // deletes winner based on index in textfield
 
             try {
                 removeWinner();
@@ -1457,27 +1455,70 @@ public class main extends Application {
     /**
      * displayWinnerAscendingOrder
      *
-     * displays winners in ascending order
+     * displays winners in ascending order           ********** NOT WORKING  **********
      */
     public void reorderWinnersName(){
+
+        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING
+            System.out.println("Before: Index " + i + "\t"+ winnerList.winnersList.get(i).getName());       //   *****    TESTING
+        }
+
+        int n = winnerList.winnersList.size();
+        winner temp = null;
+
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 1; j < (n - i); j++) {
+
+                if (winnerList.winnersList.get(j - 1).getName().compareToIgnoreCase(winnerList.winnersList.get(j).getName()) !=  0) {
+
+                    Objects.equals(temp, winnerList.winnersList.get(j - 1));
+
+                    Objects.equals(winnerList.winnersList.get(j - 1), winnerList.winnersList.get(j));
+
+                    Objects.equals(winnerList.winnersList.get(j), temp);
+
+                }
+            }
+        }
+        System.out.println("");                                                                             //   *****    TESTING
+        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING
+            System.out.println("After : Index " + i + "\t"+ winnerList.winnersList.get(i).getName());       //   *****    TESTING
+        }
 
 
     }
     /**
      * displayWinnerDesscendingOrder
      *
-     * displays winners in descending order
+     * displays winners in descending order           ********** NOT WORKING  **********
      */
-    public void reorderWinnersPrize(){
+    public  void reorderWinnersPrize(){
 
+        int n = winnerList.winnersList.size();
 
+        winner temp = null;
 
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 1; j < (n - i); j++) {
+
+                if (winnerList.winnersList.get(j - 1).getPrize().compareTo(winnerList.winnersList.get(j).getPrize()) !=  0) {
+
+                    Objects.equals(temp, winnerList.winnersList.get(j - 1));
+
+                    Objects.equals(winnerList.winnersList.get(j - 1), winnerList.winnersList.get(j));
+
+                    Objects.equals(winnerList.winnersList.get(j), temp);
+
+                }
+            }
+        }
     }
 
     public void displayWinnerDetails(){
 
         vBox_WinnersDetails.getChildren().clear();                  // clears vbox
-
 
         for(int i = 0; i < winnerList.winnersList.size(); i++ ) {   // loop through all elements of winner arrayList
 
