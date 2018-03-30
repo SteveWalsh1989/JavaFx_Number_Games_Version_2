@@ -134,24 +134,38 @@ public class main extends Application {
     private static Button g2_Submit;               //
     private static Button g2_Reset;                //
 
-    private TabPane myTab;                         // Tab pane
+    private static TabPane myTab;                         // Tab pane
     private Tab tab1;                              // Tab for guessing game
     private Tab tab2;                              // Tab for lotto game
     private Tab tab3;                              // Tab for prizes
+    private static Tab tab4;                              // tab for winners
 
      /* ----------------------------------------------------
         Tab 3:  prize page variables
     ---------------------------------------------------- */
 
-    private VBox vBox_Tab3;                   //
-    private HBox hBox_Ask_Winner;             // stucture of tab 3 to
-    private VBox vBox_Tab3_Top;               // bottom structure
-    private VBox vBox_Tab3_bottom;            // bottom structure
-    private static Label label_Prize_Title;   // and display prizes
-    private static Label label_You_Won;       //
-    private static Label label_Ask_Winner;
-    private static Label label_Congratulations;
-    private static TextField storeWinnerName;
+    private HBox hBox_Ask_Winner;               // hBox to ask winner name
+
+    private VBox vBox_Tab3;                     // main vbox
+    private VBox vBox_Tab3_Top;                 // top vbox
+    private VBox vBox_Tab3_bottom;              // bottom vbox
+
+    private static Label label_Prize_Title;     //  showing prize title
+    private static Label label_You_Won;         //  showing they won
+    private static Label label_Ask_Winner;      //  ask winner name
+    private static Label label_Congratulations; //  congratulations label after select prize
+
+    private static TextField storeWinnerName;   // store winner name
+
+    /* ----------------------------------------------------
+        Tab 4:  Winner page variables
+    ---------------------------------------------------- */
+    private VBox vBox_tab4;                                        // main structure of winner tab
+
+    private static Label label_Winners;                            // and display prizes
+
+    private static Button winner_displayAscending;                 // display winners in ascending order
+    private static Button winner_displayDescending;                // display winners in descending order
 
 
 
@@ -249,9 +263,9 @@ public class main extends Application {
         //      Tab 3: Prizes
         //-----------------------------
 
-        tab3 = new Tab();                                                       // create second lab for game 2
+        tab3 = new Tab();                                                       // create new tab for prizes
 
-        tab3.setText("Prizes");                                                 // set text of tab 2
+        tab3.setText("Prizes");                                                 // set text of tab 3
 
         label_Ask_Winner = new Label("Enter your name: ");                 // label to ask winners name
 
@@ -282,6 +296,22 @@ public class main extends Application {
         vBox_Tab3.getChildren().addAll(vBox_Tab3_Top, vBox_Tab3_bottom);        // add smaller boxes to main vbox
 
         tab3.setContent(vBox_Tab3);                                             // Adding to content to prize tab
+
+        root.setTop(myTab);                                                     // adding the tab to the Border pane root
+
+        //-----------------------------
+        //      Tab 4: Winners
+        //-----------------------------
+
+        tab4 = new Tab();                                                       // create new tab for prizes
+
+        tab4.setText("Winners");                                                // set text of tab 3
+
+        tab4.setClosable(false);                                                // prevent user from being able to close the tab
+
+        vBox_tab4 = new VBox();                                                 // vbox to display winner details
+
+        tab4.setContent(vBox_tab4);                                             // set V box : will add button to this later that will start the game
 
         root.setTop(myTab);                                                     // adding the tab to the Border pane root
 
@@ -597,6 +627,9 @@ public class main extends Application {
         vBox_Tab3_bottom.setSpacing(20);              // set spacing between nodes in VBox
 
 
+
+
+
     } // close primary stage
 
     /*
@@ -663,7 +696,7 @@ public class main extends Application {
     }
 
     /**
-     * storeInput : validation class - not working
+     * storeInput : validation class
      *
      * Stores the user input
      *
@@ -692,6 +725,30 @@ public class main extends Application {
         return -1;
 
     }
+
+    /**
+     * storeInput : validation class
+     *
+     * Stores the user input
+     *
+     * @param input - input field
+     * @return userInput - returns the user input if valid
+     */
+    private static String storeName(TextField input) {
+
+            String name = (input.getText());                    // Converts the string input form user guess into an int and stores as guess
+
+            System.out.println("Winners name: " + name);        // for testing only
+
+            input.clear();                                      // clear keyboard nextLine for enter key
+
+        myTab.getTabs().add(tab4);                              // add the winner tab to the Tab pane
+
+        return name;                                            // returns guess to program
+
+
+    }
+
     /**
      * compareNumbers
      *
@@ -1220,6 +1277,8 @@ public class main extends Application {
 
                 prizeButton.setText(node.prize);                // changes text to be actual prize
 
+                storeWinner(node.prize);                        // store winners details
+
                 prizeButton.setStyle("-fx-background-color: #80ffbf;");   // change background color of prize choosen to green
                  }
             );
@@ -1233,17 +1292,41 @@ public class main extends Application {
      *
      * Adds Winner name to the Winners array list
      *
-     * @param input : input of name from winner
      */
-    public void storeWinnerName(TextField input){
+    public void storeWinner(String prize){
+        winner w1 = new winner();                           // create new winner
+
+       w1.setPrize(prize );                                 // set prize for the winner
+
+        storeWinnerName.setOnAction((ActionEvent e) -> {    // When user enters name in textfield
+
+            String name = storeName(storeWinnerName);       // store name of winner from textfield
+
+            w1.setName(name);                               // set name of winner
+
+            for ( int  i = 0; i < winnerList.winnersList.size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
+
+                System.out.println("Winner: " + i+1 + "\tName: " + winnerList.winnersList.get(i).getName() + "\tPrize: " + winnerList.winnersList.get(i).getPrize());
+            }
+
+        });
 
 
+        winnerList.winnersList.add(w1) ;                    // add winner to the winners arrayList
 
-
-
-
-
+        try {
+            winnerList.persistWinnerListToFile();           // persist new winnerList array to the winnerlist output file
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+ /* ----------------------------------------------------
+          Winner tab Methods
+    ----------------------------------------------------  */
+
 
 
 
