@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  *
  *      Steve Walsh R00151053
  *
- *      Last Update:  30/3/18
+ *      Last Update:  31/3/18
  *
  * ------------------------------------------------------------------------------------------------
  *
@@ -48,12 +48,9 @@ public class winnerList extends ArrayList<winner> implements Serializable{
 
         is.close();                                                                      // close input stream
 
-    } catch (IOException e) {                                                            // catch exception if file not found
+    } catch (IOException | ClassNotFoundException e) {                                   // catch exception if file not found
     e.printStackTrace();
-    } catch (ClassNotFoundException e) {                                                 // catch exception if class not found
-        e.printStackTrace();
     }
-
 
 
     }

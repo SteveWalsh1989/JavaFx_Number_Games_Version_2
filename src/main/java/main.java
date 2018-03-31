@@ -31,7 +31,7 @@ import java.util.*;
  *
  *      Steve Walsh R00151053
  *
- *      Last Update:  30/3/18
+ *      Last Update:  31/3/18
  *
  * ------------------------------------------------------------------------------------------------
  * Tab 1 : Game 1 : Guessing game
@@ -76,7 +76,8 @@ import java.util.*;
  * Tab 4 : Winners
  *
  *      Displays option to view winners in ascending / descending order
- *      Displays Winner name + prize to user
+ *      Option to delete winner from list using textfield and winner number shown
+ *      Displays Winner Index, name and prize to user
  *
  * ------------------------------------------------------------------------------------------------
  */
