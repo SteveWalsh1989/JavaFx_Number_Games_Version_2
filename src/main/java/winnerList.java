@@ -44,7 +44,7 @@ public class winnerList extends ArrayList<winner> implements Serializable{
     try {
         ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));     // create new input stream to the file
 
-        winnersList = (ArrayList) is.readObject();                                     // store winner object in arrayList
+        setWinnersList((ArrayList) is.readObject());                                     // store winner object in arrayList
 
         is.close();                                                                      // close input stream
 
@@ -70,12 +70,20 @@ public class winnerList extends ArrayList<winner> implements Serializable{
         try {
             ObjectOutputStream os = new ObjectOutputStream( new FileOutputStream(fileName)); // open output stream to convert data
 
-            os.writeObject(winnersList);
+            os.writeObject(getWinnersList());
 
 
         } catch (IOException e) {                                                            // catch exception if file not found
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<winner> getWinnersList() {
+        return winnersList;
+    }
+
+    public static void setWinnersList(ArrayList<winner> winnersList) {
+        winnerList.winnersList = winnersList;
     }
 
 

@@ -22,7 +22,7 @@ import java.io.Serializable;
  *
  * ------------------------------------------------------------------------------------------------
  **/
-public class winner implements Serializable{
+public class winner implements  Serializable{
 
     private String name;
     private String prize;
@@ -102,9 +102,6 @@ public class winner implements Serializable{
 
         System.out.println("Winner's name: " + this.name + "\t\tPrize: " +this.prize);
     }
-
-
-
 
 
 

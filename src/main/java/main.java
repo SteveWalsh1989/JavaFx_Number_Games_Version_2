@@ -17,7 +17,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -723,7 +722,11 @@ public class main extends Application {
         //------------------------//
         winner_displayAscending.setOnAction(e -> {                           // Displays winners details ascending
 
-            reorderWinnersName();                                            // reorder winnersList by name alphabetically
+            try {
+                reorderWinnersName();                                            // reorder winnersList by name alphabetically
+            } catch (CloneNotSupportedException e1) {
+                e1.printStackTrace();
+            }
 
             displayWinnerDetails();                                          // displays winners details
         });
@@ -1429,15 +1432,15 @@ public class main extends Application {
 
             w1.setName(name);                               // set name of winner
 
-            for ( int  i = 0; i < winnerList.winnersList.size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
+            for (int i = 0; i < winnerList.getWinnersList().size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
 
-                System.out.println("Winner: " + i+1 + "\tName: " + winnerList.winnersList.get(i).getName() + "\tPrize: " + winnerList.winnersList.get(i).getPrize());
+                System.out.println("Winner: " + i+1 + "\tName: " + winnerList.getWinnersList().get(i).getName() + "\tPrize: " + winnerList.getWinnersList().get(i).getPrize());
             }
 
         });
 
 
-        winnerList.winnersList.add(w1) ;                    // add winner to the winners arrayList
+        winnerList.getWinnersList().add(w1) ;                    // add winner to the winners arrayList
 
         try {
             winnerList.persistWinnerListToFile();           // persist new winnerList array to the winnerlist output file
@@ -1455,35 +1458,43 @@ public class main extends Application {
     /**
      * displayWinnerAscendingOrder
      *
-     * displays winners in ascending order           ********** NOT WORKING  **********
+     * displays winners in ascending order
      */
-    public void reorderWinnersName(){
+    public void reorderWinnersName() throws CloneNotSupportedException {
 
-        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING   Print winners before reorder
-            System.out.println("\nBefore: Index " + i + "\t"+ winnerList.winnersList.get(i).getName());     //   *****    TESTING        in console
+        for(int i = 0; i < winnerList.getWinnersList().size(); i++ ) {                                           //   *****    TESTING   Print winners before reorder
+            System.out.println("\nBefore: Index " + i + "\t"+ winnerList.getWinnersList().get(i).getName());     //   *****    TESTING        in console
         }
 
-        int n = winnerList.winnersList.size();
-        winner temp = null;
+        int n = winnerList.getWinnersList().size();
+        winner temp = new winner();
 
         for (int i = 0; i < n; i++) {
 
             for (int j = 1; j < (n - i); j++) {
 
-                if (winnerList.winnersList.get(j - 1).getName().compareToIgnoreCase(winnerList.winnersList.get(j).getName()) !=  0) {
+                int decVal1 = winnerList.getWinnersList().get(j - 1).getName().charAt(0);
+                int decVal2 = winnerList.getWinnersList().get(j).getName().charAt(0);
 
-                    Objects.equals(temp, winnerList.winnersList.get(j - 1));
+                if (decVal1   > decVal2) {
 
-                    Objects.equals(winnerList.winnersList.get(j - 1), winnerList.winnersList.get(j));
+                    temp.setName(winnerList.winnersList.get(j - 1).getName());
+                    temp.setPrize(winnerList.winnersList.get(j - 1).getPrize());
 
-                    Objects.equals(winnerList.winnersList.get(j), temp);
+                    winnerList.winnersList.get(j - 1).setName(winnerList.winnersList.get(j).getName());
+                    winnerList.winnersList.get(j - 1).setPrize(winnerList.winnersList.get(j).getPrize());
+
+                    System.out.println("");
+
+                    winnerList.winnersList.get(j).setName(temp.getName());
+                    winnerList.winnersList.get(j).setPrize(temp.getPrize());
 
                 }
             }
         }
 
-        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING   Print winners after reorder
-            System.out.println("\nAfter : Index " + i + "\t"+ winnerList.winnersList.get(i).getName());     //   *****    TESTING          in console
+        for(int i = 0; i < winnerList.getWinnersList().size(); i++ ) {                                           //   *****    TESTING   Print winners after reorder
+            System.out.println("\nAfter : Index " + i + "\t"+ winnerList.getWinnersList().get(i).getName());     //   *****    TESTING          in console
         }
 
 
@@ -1491,25 +1502,31 @@ public class main extends Application {
     /**
      * displayWinnerDesscendingOrder
      *
-     * displays winners in descending order           ********** NOT WORKING  **********
+     * displays winners in descending order
      */
     public  void reorderWinnersPrize(){
 
-        int n = winnerList.winnersList.size();
+        int n = winnerList.getWinnersList().size();
 
-        winner temp = null;
+        winner temp = new winner();
 
         for (int i = 0; i < n; i++) {
 
             for (int j = 1; j < (n - i); j++) {
 
-                if (winnerList.winnersList.get(j - 1).getPrize().compareTo(winnerList.winnersList.get(j).getPrize()) !=  0) {
+                int decVal1 = winnerList.getWinnersList().get(j - 1).getPrize().charAt(0);
+                int decVal2 = winnerList.getWinnersList().get(j).getPrize().charAt(0);
 
-                    Objects.equals(temp, winnerList.winnersList.get(j - 1));
+                if (decVal1   > decVal2) {
 
-                    Objects.equals(winnerList.winnersList.get(j - 1), winnerList.winnersList.get(j));
+                    temp.setName(winnerList.winnersList.get(j - 1).getName());
+                    temp.setPrize(winnerList.winnersList.get(j - 1).getPrize());
 
-                    Objects.equals(winnerList.winnersList.get(j), temp);
+                    winnerList.winnersList.get(j - 1).setName(winnerList.winnersList.get(j).getName());
+                    winnerList.winnersList.get(j - 1).setPrize(winnerList.winnersList.get(j).getPrize());
+
+                    winnerList.winnersList.get(j).setName(temp.getName());
+                    winnerList.winnersList.get(j).setPrize(temp.getPrize());
 
                 }
             }
@@ -1520,7 +1537,7 @@ public class main extends Application {
 
         vBox_WinnersDetails.getChildren().clear();                  // clears vbox
 
-        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {   // loop through all elements of winner arrayList
+        for(int i = 0; i < winnerList.getWinnersList().size(); i++ ) {   // loop through all elements of winner arrayList
 
             Label DisplayWinner = new Label();                      // creates new button for prize
 
@@ -1528,8 +1545,8 @@ public class main extends Application {
 
             DisplayWinner.setMinHeight(45);                         // sets minimum height of prize button
 
-            DisplayWinner.setText(i+1 + "\t" + winnerList.winnersList.get(i).getName()
-                                   +  "\t\t" + winnerList.winnersList.get(i).getPrize()); // changes text of button to be name of winner and index+1
+            DisplayWinner.setText(i+1 + "\t" + winnerList.getWinnersList().get(i).getName()
+                                   +  "\t\t" + winnerList.getWinnersList().get(i).getPrize()); // changes text of button to be name of winner and index+1
 
             vBox_WinnersDetails.getChildren().add(DisplayWinner);         // adds label to VBox for winners
 
@@ -1553,7 +1570,7 @@ public class main extends Application {
 
             storeWinnerIndex.clear();                                                   // clear input field of incorrect type entered
         }
-            winnerList.winnersList.remove((winnerIndex - 1));                           // removes winner at index : NOT WORKING
+            winnerList.getWinnersList().remove((winnerIndex - 1));                           // removes winner at index : NOT WORKING
 
         storeWinnerIndex.clear();                                                       // clear textfield
 
