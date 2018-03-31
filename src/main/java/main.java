@@ -1459,8 +1459,8 @@ public class main extends Application {
      */
     public void reorderWinnersName(){
 
-        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING
-            System.out.println("Before: Index " + i + "\t"+ winnerList.winnersList.get(i).getName());       //   *****    TESTING
+        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING   Print winners before reorder
+            System.out.println("\nBefore: Index " + i + "\t"+ winnerList.winnersList.get(i).getName());     //   *****    TESTING        in console
         }
 
         int n = winnerList.winnersList.size();
@@ -1481,9 +1481,9 @@ public class main extends Application {
                 }
             }
         }
-        System.out.println("");                                                                             //   *****    TESTING
-        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING
-            System.out.println("After : Index " + i + "\t"+ winnerList.winnersList.get(i).getName());       //   *****    TESTING
+
+        for(int i = 0; i < winnerList.winnersList.size(); i++ ) {                                           //   *****    TESTING   Print winners after reorder
+            System.out.println("\nAfter : Index " + i + "\t"+ winnerList.winnersList.get(i).getName());     //   *****    TESTING          in console
         }
 
 
