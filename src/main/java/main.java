@@ -1461,43 +1461,29 @@ public class main extends Application {
      * displays winners in ascending order
      */
     public void reorderWinnersName() throws CloneNotSupportedException {
+        int n = winnerList.getWinnersList().size();                                             // get size of winners list
 
-        for(int i = 0; i < winnerList.getWinnersList().size(); i++ ) {                                           //   *****    TESTING   Print winners before reorder
-            System.out.println("\nBefore: Index " + i + "\t"+ winnerList.getWinnersList().get(i).getName());     //   *****    TESTING        in console
-        }
+        winner temp = new winner();                                                             // create temporary winner object
 
-        int n = winnerList.getWinnersList().size();
-        winner temp = new winner();
+        for (int i = 0; i < n; i++) {                                                           // loop through array
 
-        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {                                                 // secondary loop
 
-            for (int j = 1; j < (n - i); j++) {
+                int decVal1 = winnerList.getWinnersList().get(j - 1).getName().charAt(0);       // convert first char of initial item name to decimal value
+                int decVal2 = winnerList.getWinnersList().get(j).getName().charAt(0);           // convert first char of next item name to decimal value
 
-                int decVal1 = winnerList.getWinnersList().get(j - 1).getName().charAt(0);
-                int decVal2 = winnerList.getWinnersList().get(j).getName().charAt(0);
+                    if (decVal1   > decVal2) {                                                                  // if initial value is greater than second
+                        temp.setName(winnerList.winnersList.get(j - 1).getName());                              //
+                        temp.setPrize(winnerList.winnersList.get(j - 1).getPrize());                            // bubble sorts through the names
+                        winnerList.winnersList.get(j - 1).setName(winnerList.winnersList.get(j).getName());     //
+                        winnerList.winnersList.get(j - 1).setPrize(winnerList.winnersList.get(j).getPrize());   //
+                        System.out.print("");                                                                   //
+                        winnerList.winnersList.get(j).setName(temp.getName());                                  //
+                        winnerList.winnersList.get(j).setPrize(temp.getPrize());                                //
 
-                if (decVal1   > decVal2) {
-
-                    temp.setName(winnerList.winnersList.get(j - 1).getName());
-                    temp.setPrize(winnerList.winnersList.get(j - 1).getPrize());
-
-                    winnerList.winnersList.get(j - 1).setName(winnerList.winnersList.get(j).getName());
-                    winnerList.winnersList.get(j - 1).setPrize(winnerList.winnersList.get(j).getPrize());
-
-                    System.out.println("");
-
-                    winnerList.winnersList.get(j).setName(temp.getName());
-                    winnerList.winnersList.get(j).setPrize(temp.getPrize());
-
+                    }
                 }
             }
-        }
-
-        for(int i = 0; i < winnerList.getWinnersList().size(); i++ ) {                                           //   *****    TESTING   Print winners after reorder
-            System.out.println("\nAfter : Index " + i + "\t"+ winnerList.getWinnersList().get(i).getName());     //   *****    TESTING          in console
-        }
-
-
     }
     /**
      * displayWinnerDesscendingOrder
@@ -1506,27 +1492,24 @@ public class main extends Application {
      */
     public  void reorderWinnersPrize(){
 
-        int n = winnerList.getWinnersList().size();
+        int n = winnerList.getWinnersList().size();                                             // get size of winners list
 
-        winner temp = new winner();
+        winner temp = new winner();                                                             // create temporary winner object
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {                                                           // loop through array
 
-            for (int j = 1; j < (n - i); j++) {
+            for (int j = 1; j < (n - i); j++) {                                                 // secondary loop
 
-                int decVal1 = winnerList.getWinnersList().get(j - 1).getPrize().charAt(0);
-                int decVal2 = winnerList.getWinnersList().get(j).getPrize().charAt(0);
+                int decVal1 = winnerList.getWinnersList().get(j - 1).getPrize().charAt(0);      // convert first char of initial item name to decimal value
+                int decVal2 = winnerList.getWinnersList().get(j).getPrize().charAt(0);          // convert first char of next item name to decimal value
 
-                if (decVal1   > decVal2) {
-
-                    temp.setName(winnerList.winnersList.get(j - 1).getName());
-                    temp.setPrize(winnerList.winnersList.get(j - 1).getPrize());
-
-                    winnerList.winnersList.get(j - 1).setName(winnerList.winnersList.get(j).getName());
-                    winnerList.winnersList.get(j - 1).setPrize(winnerList.winnersList.get(j).getPrize());
-
-                    winnerList.winnersList.get(j).setName(temp.getName());
-                    winnerList.winnersList.get(j).setPrize(temp.getPrize());
+                if (decVal1   > decVal2) {                                                                  // if initial value is greater than second
+                    temp.setName(winnerList.winnersList.get(j - 1).getName());                              //
+                    temp.setPrize(winnerList.winnersList.get(j - 1).getPrize());                            // bubble sorts through the names
+                    winnerList.winnersList.get(j - 1).setName(winnerList.winnersList.get(j).getName());     //
+                    winnerList.winnersList.get(j - 1).setPrize(winnerList.winnersList.get(j).getPrize());   //
+                    winnerList.winnersList.get(j).setName(temp.getName());                                  //
+                    winnerList.winnersList.get(j).setPrize(temp.getPrize());                                //
 
                 }
             }
