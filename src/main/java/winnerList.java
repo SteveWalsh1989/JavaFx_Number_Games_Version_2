@@ -48,7 +48,7 @@ public class winnerList extends ArrayList<winner> implements Serializable{
 
         is.close();                                                                      // close input stream
 
-    } catch (IOException | ClassNotFoundException e) {                                   // catch exception if file not found
+    } catch (IOException | ClassNotFoundException e  ) {                                   // catch exception if file not found
     e.printStackTrace();
     }
 
@@ -62,12 +62,6 @@ public class winnerList extends ArrayList<winner> implements Serializable{
      * @throws FileNotFoundException
      */
     public static void persistWinnerListToFile() throws IOException {
-
-        for (int i = 0; i < winnerList.getWinnersList().size(); i++ ) {              // ***** TEST : prints winners list to console *****\\
-                    System.out.println("TEST: persistWinnerListToFile :Winner: " +   // ***** TEST : prints winners list to console *****\\
-                    i+1 + "\tName: " + winnerList.getWinnersList().get(i).getName()  // ***** TEST : prints winners list to console *****\\
-                    + "\tPrize: " + winnerList.getWinnersList().get(i).getPrize());} // ***** TEST : prints winners list to console *****\\
-
 
         try {
             ObjectOutputStream os = new ObjectOutputStream( new FileOutputStream(fileName)); // open output stream to convert data

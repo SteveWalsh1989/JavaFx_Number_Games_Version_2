@@ -1436,15 +1436,12 @@ public class main extends Application {
      *
      */
     public void storeWinner(String prize){
-        winner w1 = new winner();                           // create new winner
-
-       w1.setPrize(prize );                                 // set prize for the winner
 
         storeWinnerName.setOnAction((ActionEvent e) -> {    // When user enters name in textfield
 
             String name = storeName(storeWinnerName);       // store name of winner from textfield
 
-            w1.setName(name);                               // set name of winner
+            winner w1 = new winner(name,prize );            // create new winner
 
 
             resetPrizeTab();                                // resets the prize tab
@@ -1453,17 +1450,17 @@ public class main extends Application {
 
             vBox_Tab3_bottom.getChildren().add(winnerDetailsSaved); // show details saved
 
+            winnerList.getWinnersList().add(w1) ;               // add winner to the winners arrayList
 
+            try {
+                winnerList.persistWinnerListToFile();           // save winners details to file
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 
         });
 
-        winnerList.getWinnersList().add(w1) ;               // add winner to the winners arrayList
 
-        try {
-            winnerList.persistWinnerListToFile();           // persist new winnerList array to the winnerlist output file
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 

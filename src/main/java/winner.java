@@ -58,7 +58,6 @@ public class winner implements  Serializable{
      * @return name : returns winners name
      */
     public String getName(){
-
         return this.name;
     }
     /**
@@ -80,8 +79,7 @@ public class winner implements  Serializable{
      * @param winnerName : name of winner
      */
     public void setName(String winnerName){
-
-    this.name = winnerName;
+        this.name = winnerName;
     }
     /**
      * setPrize
@@ -90,7 +88,6 @@ public class winner implements  Serializable{
      */
     public void setPrize(String winnerPrize) {
         this.prize = winnerPrize;
-
     }
 
     /**
@@ -102,6 +99,7 @@ public class winner implements  Serializable{
 
         System.out.println("Winner's name: " + this.name + "\t\tPrize: " +this.prize);
     }
+
 
 
 
