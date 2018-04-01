@@ -1564,4 +1564,30 @@ public class main extends Application {
     }
 
 
+    /* -------------------------------------------------------------------
+         Method to create winner clones to check how it impacts memory
+       -------------------------------------------------------------------  */
+
+    /**
+     * cloneWinners
+     *
+     * Use visual VM or other to examine your project’s memory.
+     * Create a loop that creates lots and lots of dummy
+     * winner objects add them to some collection and then take
+     * a snapshot of the heap again to see the effect on the Heap,
+     * or wait for the out of memory error. Let it run until you
+     * get outofmemory error
+     *
+     */
+    public void cloneWinners() {
+        ArrayList<winner> cloneArray = new ArrayList<>();                               // arraylist to hold the winners
+
+        while (true) {                                                                  // infinite loop
+
+            winner w1 = new winner("CloneName", "ClonePrize");   // create new winner
+
+            cloneArray.add(w1);                                                         // add to list
+        }
+    }
+
 } // close class
