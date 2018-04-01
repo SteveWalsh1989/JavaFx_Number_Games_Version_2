@@ -1,6 +1,4 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.stream.Stream;
+
 
 /**
  * ------------------------------------------------------------------------------------------------
@@ -23,6 +21,20 @@ import java.util.stream.Stream;
  *
  * ------------------------------------------------------------------------------------------------
  **/
+
+
+
+//--------------------------------------------------
+//	IMPORTS
+//--------------------------------------------------
+import java.io.*;
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
+
+//--------------------------------------------------
+// CLASS
+//--------------------------------------------------
 public class winnerList extends ArrayList<winner> implements Serializable{
 
     public static  ArrayList<winner> winnersList = new ArrayList<>();  // create arrayList to store winners

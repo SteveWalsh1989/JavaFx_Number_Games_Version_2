@@ -1,15 +1,3 @@
-
-
-//--------------------------------------------------
-//	IMPORTS
-//--------------------------------------------------
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
-
 /**
  * ------------------------------------------------------------------------------------------------
  * Details :
@@ -31,6 +19,16 @@ import java.io.IOException;
  *
  * ------------------------------------------------------------------------------------------------
  **/
+
+//--------------------------------------------------
+//	IMPORTS
+//--------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 //--------------------------------------------------
 // CLASS
