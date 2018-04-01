@@ -31,7 +31,7 @@ import java.util.*;
  *
  *      Steve Walsh R00151053
  *
- *      Last Update:  31/3/18
+ *      Last Update:  1/4/18
  *
  * ------------------------------------------------------------------------------------------------
  * Tab 1 : Game 1 : Guessing game
@@ -132,11 +132,11 @@ public class main extends Application {
     private static Button g2_Submit;               //
     private static Button g2_Reset;                //
 
-    private static TabPane myTab;                         // Tab pane
+    private static TabPane myTab;                  // Tab pane
     private Tab tab1;                              // Tab for guessing game
     private Tab tab2;                              // Tab for lotto game
     private Tab tab3;                              // Tab for prizes
-    private static Tab tab4;                              // tab for winners
+    private static Tab tab4;                       // tab for winners
 
      /* ----------------------------------------------------
         Tab 3:  prize page variables
