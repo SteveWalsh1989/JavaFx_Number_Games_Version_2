@@ -659,7 +659,14 @@ public class main extends Application {
 
         hBox_Ask_Winner.setSpacing(20);
 
-        hBox_Ask_Winner.setPadding(new Insets(25, 10, 25, 10));
+        hBox_Ask_Winner.setPadding(new Insets(25, 20, 25, 20));
+
+        //-----------------------------
+        //     Delete Winner
+        //-----------------------------
+        label_delete_winner.setPadding(new Insets(0, 20, 0, 0));
+
+
 
         //-----------------------------
         //     Prize VBox
@@ -940,6 +947,7 @@ public class main extends Application {
             hintHigher.setVisible(false);                                                        // hide hint
 
             hintLower.setVisible(false);                                                         // hide hint
+
         }
     }
     /**
@@ -973,8 +981,8 @@ public class main extends Application {
         num_remaining_guess_label.setText("You have " + numGuesses + " remaining!");   //  reset label text
         num_remaining_guess_label.setTextFill(Color.web("#000000"));                   //  reset label color
         winningNumber = generateWinningNumber();                                       // generate and store the winning number
-        myTab.getTabs().remove(tab3);                                                  // hides prize tab
-
+        vBox_Tab3_bottom.getChildren().clear();                                        // remove Vbox children
+        label_Prize_Title.setVisible(true);
     }
 
     /**
@@ -1136,6 +1144,9 @@ public class main extends Application {
 
         hBox_User_Numbers.setStyle(null);                // reset background color
 
+        label_Prize_Title.setVisible(true);
+
+        vBox_Tab3_bottom.getChildren().clear();          // remove Vbox children from winner tab
 
         myTab.getTabs().remove(tab3);                    // hides prize tab
 
@@ -1413,6 +1424,8 @@ public class main extends Application {
             );
 
             displayPrizesTree(node.rightChild);                // Traverse the right node
+
+
         }
     }
 
@@ -1433,21 +1446,38 @@ public class main extends Application {
 
             w1.setName(name);                               // set name of winner
 
-            for (int i = 0; i < winnerList.getWinnersList().size(); i++ ) {       // ***** TEST : prints winners list to console *****\\
+            resetPrizeTab();                                // resets the prize tab
 
-                System.out.println("Winner: " + i+1 + "\tName: " + winnerList.getWinnersList().get(i).getName() + "\tPrize: " + winnerList.getWinnersList().get(i).getPrize());
-            }
+            Label winnerDetailsSaved = new Label("Winner's details saved"); // show details saved
+
+            vBox_Tab3_bottom.getChildren().add(winnerDetailsSaved); // show details saved
+
+
 
         });
 
-
-        winnerList.getWinnersList().add(w1) ;                    // add winner to the winners arrayList
+        winnerList.getWinnersList().add(w1) ;               // add winner to the winners arrayList
 
         try {
             winnerList.persistWinnerListToFile();           // persist new winnerList array to the winnerlist output file
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+
+    public void resetPrizeTab(){
+
+
+        vBox_Tab3_bottom.getChildren().clear();          // remove Vbox children
+
+        label_You_Won.setVisible(false);                 // hide the you won label
+
+        label_Ask_Winner.setVisible(false);              // hide label asking winner name
+
+        storeWinnerName.setVisible(false);               // hide text field for name input
+
     }
 
 
