@@ -331,41 +331,39 @@ public class main extends Application {
 
         displayWinnerOptions = new HBox();                                      // hbox to store display options
 
-        winner_displayAscending = new Button("Order by Name");           // option 1 : Order by Name
+        winner_displayAscending = new Button("Order by Name");             // option 1 : Order by Name
 
-        winner_displayDescending = new Button("Order by Prize");         // option 2 : Order by Prize
+        winner_displayDescending = new Button("Order by Prize");           // option 2 : Order by Prize
 
         displayWinnerOptions.getChildren().addAll(winner_displayAscending,winner_displayDescending);
 
         deleteWinner = new HBox();
 
-        label_delete_winner = new Label("Delete winner by entering index"); // prompt user to enter number of winner to delete
+        label_delete_winner = new Label("Delete winner by entering index");              // prompt user to enter number of winner to delete
 
-        storeWinnerIndex = new TextField();                                      // create new textfield to store index
+        storeWinnerIndex = new TextField();                                                   // create new textfield to store index
 
-        storeWinnerIndex.setPromptText("EG: 1");                                 // set prompt of text field with example
+        storeWinnerIndex.setPromptText("EG: 1");                                              // set prompt of text field with example
 
-        deletewinner = new Button("Submit");
+        deletewinner = new Button("Delete");                                             // Delete button
 
         deleteWinner.getChildren().addAll(label_delete_winner,storeWinnerIndex,deletewinner); // add label and textfield to hbox
 
-        vBox_WinnersDetails = new VBox();                                             // store winners details
+        vBox_WinnersDetails = new VBox();                                                     // store winners details
 
-        ScrollPane scrollPane_WinnersDetails = new ScrollPane(vBox_WinnersDetails);   // Create a ScrollPane to add winners details too
+        ScrollPane scrollPane_WinnersDetails = new ScrollPane(vBox_WinnersDetails);           // Create a ScrollPane to add winners details too
 
+        scrollPane_WinnersDetails.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);        // always have the vertical scroll bar shown
 
-        scrollPane_WinnersDetails.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);  // always have the vertical scroll bar shown
-
-        scrollPane_WinnersDetails.setMaxHeight(230);                                 // set a max height
+        scrollPane_WinnersDetails.setMaxHeight(230);                                          // set a max height
 
         vBox_tab4.getChildren().addAll(winnerTitle,displayWinnerOptions,deleteWinner,scrollPane_WinnersDetails); // add all structures to main vbox
 
-        tab4.setContent(vBox_tab4);                                              // set V box
+        tab4.setContent(vBox_tab4);                                                           // set V box
 
-        root.setTop(myTab);                                                      // adding the tab to the Border pane root
+        root.setTop(myTab);                                                                   // adding the tab to the Border pane root
 
-
-        myTab.getTabs().add(tab4);                              /** add the winner tab to the Tab pane  REMOVE LATER */
+        myTab.getTabs().add(tab4);                                                            // add the winner tab to the Tab pane
 
 
 
@@ -377,10 +375,10 @@ public class main extends Application {
         //-----------------------------
         //      Grid
         //-----------------------------
-        game_1_grid.setHgap(10);                                                     // set gaps between horizontal grid panes
-        game_1_grid.setVgap(10);                                                     // set gaps between vertical grid panes
-        game_1_grid.getColumnConstraints().add(new ColumnConstraints(50));    // column 50 wide
-        GridPane.setHalignment(g1_start, HPos.CENTER);                               //
+        game_1_grid.setHgap(10);                                                  // set gaps between horizontal grid panes
+        game_1_grid.setVgap(10);                                                  // set gaps between vertical grid panes
+        game_1_grid.getColumnConstraints().add(new ColumnConstraints(50)); // column 50 wide
+        GridPane.setHalignment(g1_start, HPos.CENTER);                            //
         GridPane.setHalignment(g1_quit, HPos.CENTER);                             //
         GridPane.setHalignment(g1_reset, HPos.CENTER);                            // To align vertically in the cell
         GridPane.setHalignment(g1_clear, HPos.CENTER);                            //
@@ -489,40 +487,40 @@ public class main extends Application {
         label_WinningNum_5 = new Label(Integer.toString(winningNumbers[4])); //
         label_WinningNum_6 = new Label(Integer.toString(winningNumbers[5])); //
 
-        label_WinningNum_title.setVisible(false);//
-        label_WinningNum_1.setVisible(false);    //
-        label_WinningNum_2.setVisible(false);    //
-        label_WinningNum_3.setVisible(false);    //
-        label_WinningNum_4.setVisible(false);    // Hide Winning number labels at beginning of game
-        label_WinningNum_5.setVisible(false);    //
-        label_WinningNum_6.setVisible(false);    //
+        label_WinningNum_title.setVisible(false);                            //
+        label_WinningNum_1.setVisible(false);                                //
+        label_WinningNum_2.setVisible(false);                                //
+        label_WinningNum_3.setVisible(false);                                //
+        label_WinningNum_4.setVisible(false);                                // Hide Winning number labels at beginning of game
+        label_WinningNum_5.setVisible(false);                                //
+        label_WinningNum_6.setVisible(false);                                //
 
         label_UserGuess_title = new Label("Your Guesses: \t");
-        label_UserGuess_1 = new Label("userGuess 1"); //
-        label_UserGuess_2 = new Label("userGuess 2"); //
-        label_UserGuess_3 = new Label("userGuess 3"); //
-        label_UserGuess_4 = new Label("userGuess 4"); // initialize labels for user Guess
-        label_UserGuess_5 = new Label("userGuess 5"); //
-        label_UserGuess_6 = new Label("userGuess 6"); //
+        label_UserGuess_1 = new Label("userGuess 1");                   //
+        label_UserGuess_2 = new Label("userGuess 2");                   //
+        label_UserGuess_3 = new Label("userGuess 3");                   //
+        label_UserGuess_4 = new Label("userGuess 4");                   // initialize labels for user Guess
+        label_UserGuess_5 = new Label("userGuess 5");                   //
+        label_UserGuess_6 = new Label("userGuess 6");                   //
 
-        label_UserGuess_title.setVisible(false);           //
-        label_UserGuess_1.setVisible(false);               //
-        label_UserGuess_2.setVisible(false);               //
-        label_UserGuess_3.setVisible(false);               // Hide userGuess labels at beginning of game
-        label_UserGuess_4.setVisible(false);               //
-        label_UserGuess_5.setVisible(false);               //
-        label_UserGuess_6.setVisible(false);               //
+        label_UserGuess_title.setVisible(false);                             //
+        label_UserGuess_1.setVisible(false);                                 //
+        label_UserGuess_2.setVisible(false);                                 //
+        label_UserGuess_3.setVisible(false);                                 // Hide userGuess labels at beginning of game
+        label_UserGuess_4.setVisible(false);                                 //
+        label_UserGuess_5.setVisible(false);                                 //
+        label_UserGuess_6.setVisible(false);                                 //
 
         // Buttons
-        g2_Start     = new Button("    Start    ");            // initialize start button
-        g2_Quit      = new Button("    Quit     ");            // initialize Quit button
-        g2_TryAgain  = new Button("  Try Again  ");            // initialize try again button
-        g2_Reset     = new Button("Reset Numbers");            // initialize reset button
-        g2_Submit    = new Button("   Submit    ");            // initialize Submit button
+        g2_Start     = new Button("    Start    ");                     // initialize start button
+        g2_Quit      = new Button("    Quit     ");                     // initialize Quit button
+        g2_TryAgain  = new Button("  Try Again  ");                     // initialize try again button
+        g2_Reset     = new Button("Reset Numbers");                     // initialize reset button
+        g2_Submit    = new Button("   Submit    ");                     // initialize Submit button
 
-        g2_Submit.setDisable(true);                        // Disable submit button on game start
-        g2_TryAgain.setDisable(true);                      // Disable try again button on game start
-        g2_Reset.setDisable(true);                         // Disable reset button on game start
+        g2_Submit.setDisable(true);                                          // Disable submit button on game start
+        g2_TryAgain.setDisable(true);                                        // Disable try again button on game start
+        g2_Reset.setDisable(true);                                           // Disable reset button on game start
 
             /*
             ----------------------------------------------------
@@ -545,11 +543,11 @@ public class main extends Application {
         //-----------------------------
         //      Winning Number H Box
         //-----------------------------
-        HBox hBox_Winning_Numbers = new HBox();                                          // adding hBox for winning numbers
+        HBox hBox_Winning_Numbers = new HBox();                                              // adding hBox for winning numbers
 
-        hBox_Winning_Numbers.getChildren().addAll(label_WinningNum_title, label_WinningNum_1, label_WinningNum_2, label_WinningNum_3, label_WinningNum_4, label_WinningNum_5, label_WinningNum_6);                                                // adding labels to h Box
+        hBox_Winning_Numbers.getChildren().addAll(label_WinningNum_title, label_WinningNum_1, label_WinningNum_2, label_WinningNum_3, label_WinningNum_4, label_WinningNum_5, label_WinningNum_6);                                                    // adding labels to h Box
 
-        hBox_Winning_Numbers.setSpacing(20);                                             // sets spacing of the winning number hbox
+        hBox_Winning_Numbers.setSpacing(20);                                                 // sets spacing of the winning number hbox
 
         hBox_Winning_Numbers.setPadding(new Insets(10, 10, 10, 10)); // set padding of the winning number hbox
 
@@ -607,12 +605,12 @@ public class main extends Application {
         //---------------------//
         //     Start Button    //
         //---------------------//
-        g2_Start.setOnAction(e -> beginGame2());                  // starts the game by allowing users to select numbers
+        g2_Start.setOnAction(e -> beginGame2());                    // starts the game by allowing users to select numbers
 
         //---------------------//
         //     Quit Button     //
         //---------------------//
-        g2_Quit.setOnAction(e -> alertBox(primaryStage));         // shows pop up box to confirm user wishes to close application
+        g2_Quit.setOnAction(e -> alertBox(primaryStage));           // shows pop up box to confirm user wishes to close application
 
         //---------------------//
         //     Try Again Button    //
@@ -660,32 +658,28 @@ public class main extends Application {
         //-----------------------------
         //     Ask Winner name HBox
         //-----------------------------
-        label_Ask_Winner.setAlignment(Pos.CENTER);  // center align main label
+        label_Ask_Winner.setAlignment(Pos.CENTER);                                      // center align main label
 
-        hBox_Ask_Winner.setAlignment(Pos.CENTER);   // center align
+        hBox_Ask_Winner.setAlignment(Pos.CENTER);                                       // center align
 
-        hBox_Ask_Winner.setSpacing(20);
+        hBox_Ask_Winner.setSpacing(20);                                                 // sets spacing
 
-        hBox_Ask_Winner.setPadding(new Insets(25, 20, 25, 20));
+        hBox_Ask_Winner.setPadding(new Insets(25, 20, 25, 20));  // set padding
 
         //-----------------------------
         //     Delete Winner
         //-----------------------------
-        label_delete_winner.setPadding(new Insets(0, 20, 0, 0));
-
-
+        label_delete_winner.setPadding(new Insets(0, 20, 0, 0)); // set padding
 
         //-----------------------------
         //     Prize VBox
         //-----------------------------
 
-        vBox_Tab3_bottom.getChildren().addAll(label_Prize_Title,label_You_Won) ; // title and youWon added to the top of the VBox
+        vBox_Tab3_bottom.getChildren().addAll(label_Prize_Title,label_You_Won) ;        // title and youWon added to the top of the VBox
 
-        vBox_Tab3_bottom.setAlignment(Pos.CENTER);    // positions vBox in the center
+        vBox_Tab3_bottom.setAlignment(Pos.CENTER);                                      // positions vBox in the center
 
-        vBox_Tab3_bottom.setSpacing(20);              // set spacing between nodes in VBox
-
-
+        vBox_Tab3_bottom.setSpacing(20);                                                // set spacing between nodes in VBox
 
      /*
        -----------------------
@@ -694,9 +688,9 @@ public class main extends Application {
      */
         winnerTitle.setAlignment(Pos.CENTER);                                               // position title to center
 
-        winnerTitle.setPadding(new Insets(15,0,15,0));               // set padding
+        winnerTitle.setPadding(new Insets(15,0,15,0));              // set padding
 
-        displayWinnerOptions.setAlignment(Pos.CENTER);                                 // position display options to center
+        displayWinnerOptions.setAlignment(Pos.CENTER);                                      // position display options to center
 
         displayWinnerOptions.setPadding(new Insets(15,0,15,0));     // set padding
 
@@ -722,7 +716,7 @@ public class main extends Application {
         deletewinner.setMinWidth(50);
         deletewinner.setPadding(new Insets(5,20,5,20));
 
-        vBox_WinnersDetails.setAlignment(Pos.CENTER_LEFT);                                       // position winner details to center
+        vBox_WinnersDetails.setAlignment(Pos.CENTER_LEFT);                                  // position winner details to center
         vBox_WinnersDetails.setPadding(new Insets(5,20,5,160));
 
 
@@ -738,7 +732,7 @@ public class main extends Application {
         winner_displayAscending.setOnAction(e -> {                           // Displays winners details ascending
 
             try {
-                reorderWinnersName();                                            // reorder winnersList by name alphabetically
+                reorderWinnersName();                                        // reorder winnersList by name alphabetically
             } catch (CloneNotSupportedException e1) {
                 e1.printStackTrace();
             }
@@ -849,24 +843,19 @@ public class main extends Application {
     private static int storeInput(TextField input) {
 
         try {
-            int userInput = Integer.parseInt(input.getText());  // Converts the string input form user guess into an int and stores as guess
+            int userInput = Integer.parseInt(input.getText());                  // Converts the string input form user guess into an int and stores as guess
 
-            System.out.println("Guessing Game: Input is: " + userInput);       // for testing only
+            input.clear();                                                      // clear keyboard nextLine for enter key
 
-            input.clear();                                      // clear keyboard nextLine for enter key
-
-            return userInput;                                   // returns guess to program
+            return userInput;                                                   // returns guess to program
 
         } catch (NumberFormatException e) {
 
-            input.setPromptText("Error: Guess number between 1-100");  // adding text prompt to text input field
+            input.setPromptText("Error: Guess number between 1-100");           // adding text prompt to text input field
 
-            input.clear();
+            input.clear();                                                      // clear keyboard nextLine for enter key
         }
-                                                 // clear keyboard nextLine for enter key
-
         return -1;
-
     }
 
     /**
@@ -880,8 +869,6 @@ public class main extends Application {
     private static String storeName(TextField input) {
 
             String name = (input.getText());                    // Converts the string input form user guess into an int and stores as guess
-
-            System.out.println("Winners name: " + name);        // for testing only
 
             input.clear();                                      // clear keyboard nextLine for enter key
 
@@ -928,13 +915,13 @@ public class main extends Application {
      */
      private void checkWinner(Label num_remaining_guess_label) {
 
-        if (!isWinner && numGuesses > 1) {              // if didn't win and has guesses remaining
+        if (!isWinner && numGuesses > 1) {                                                 // if didn't win and has guesses remaining
 
-            numGuesses = numGuesses - 1;                // decrease number of guesses
+            numGuesses = numGuesses - 1;                                                   // decrease number of guesses
 
-            num_remaining_guess_label.setText("You have " + numGuesses + " remaining!");
+            num_remaining_guess_label.setText("You have " + numGuesses + " remaining!");   // tell player how many guesses remaining
 
-        } else if (numGuesses == 1) {                   // if didn't win and has no guesses remaining
+        } else if (numGuesses == 1) {                                                      // if didn't win and has no guesses remaining
 
             num_remaining_guess_label.setText("Game Over: You have No more guesses!");     // change label showing lost game
             num_remaining_guess_label.setTextFill(Color.web("#ff3333"));                   // change label color to red
@@ -1037,11 +1024,11 @@ public class main extends Application {
               inputField.clear();                               // clear input field of incorrect type entered
         }
 
-        compareNumbers(userGuess, winningNumber);           // check if guess is correct
+        compareNumbers(userGuess, winningNumber);               // check if guess is correct
 
-        checkWinner(num_remaining_guess_label);             // checks winner
+        checkWinner(num_remaining_guess_label);                 // checks winner
 
-        inputField.clear();                                // clear keyboard nextLine for enter key
+        inputField.clear();                                     // clear keyboard nextLine for enter key
     }
 
     /**
@@ -1098,8 +1085,7 @@ public class main extends Application {
                 }
             }
         }
-
-        System.out.print("Lotto Winning Numbers: "); //******  testing: prints winning numbers to console *******//
+        System.out.print("Lotto Winning Numbers: ");                  //******  testing: prints winning numbers to console *******//
         for (int aNumberArray : numberArray) {
             System.out.print(" " + aNumberArray);
         }
@@ -1114,19 +1100,17 @@ public class main extends Application {
      */
     private void beginGame2() {
 
-        for (Button lottoButton : lottoButtons) {  // loop through lotto number array
+        for (Button lottoButton : lottoButtons) {        // loop through lotto number array
 
-            lottoButton.setDisable(false);           // make all lotto number buttons selectable
+            lottoButton.setDisable(false);               // make all lotto number buttons selectable
         }
         g2_TryAgain.setDisable(false);                   // show reset button
 
         g2_Reset.setDisable(false);                      // show new number button
 
         g2_Start.setDisable(true);                       // disable start button
-
-
         try {
-            PrizeData.storePrizes();    // load up prizes
+            PrizeData.storePrizes();                    // load up prizes
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1145,7 +1129,7 @@ public class main extends Application {
 
         g2_Reset.setDisable(true);                       // Disable new number button on game start
 
-        g2_Start.setDisable(false);                       // disable start button
+        g2_Start.setDisable(false);                      // disable start button
 
         g2_Submit.setStyle(null);                        // reset color of submit button
 
@@ -1159,9 +1143,9 @@ public class main extends Application {
 
         userGuess2.clear();                              // clears the user guess array
 
-        for (Button lottoButton : lottoButtons) {  // loop through all 45 lotto numbers to add buttons for each
+        for (Button lottoButton : lottoButtons) {        // loop through all 45 lotto numbers to add buttons for each
 
-            lottoButton.setDisable(true);            // disable numeric buttons
+            lottoButton.setDisable(true);                // disable numeric buttons
         }
         label_UserGuess_1.setVisible(false);             //
         label_UserGuess_2.setVisible(false);             //
@@ -1240,23 +1224,19 @@ public class main extends Application {
                     label_UserGuess_6.setVisible(true);
                     break;
                 default:
-                    System.out.print("Error");
             }
             if (numberGuess == numberLimit) {                                // check if the user guess array is full
 
-                for (Button lottoButton1 : lottoButtons) {              // loop through all 45 lotto numbers to add buttons for each
+                for (Button lottoButton1 : lottoButtons) {                   // loop through all 45 lotto numbers to add buttons for each
 
-                    lottoButton1.setDisable(true);                        // disable numeric buttons
+                    lottoButton1.setDisable(true);                           // disable numeric buttons
 
                     g2_Submit.setDisable(false);                             // enable submit button
 
                     g2_Submit.setStyle("-fx-background-color: #b3ecff;");    // change color of submit button to indicate it needs to be pressed
-
                 }
             }
         }
-        System.out.println("Lotto: You selected: "+result);               // prints selected guess to console
-        System.out.println("Lotto: Number of guesses:    "+numberGuess);  // print current number of guesses to console
   }
 
     /**
@@ -1315,8 +1295,6 @@ public class main extends Application {
 
             myTab.getTabs().add(tab3);                                          // displays prize tab
 
-            System.out.println("Result: 4 Numbers guessed correctly ");         //  testing only  **/
-
             displayPrizesTree(PrizeData.fourStarTree.root);                     // displays prizes from tree
 
         } else if( g2_prize == 5 ) {                                            // user matched 5 numbers correctly
@@ -1325,8 +1303,6 @@ public class main extends Application {
 
             myTab.getTabs().add(tab3);                                          // displays prize tab
 
-            System.out.println("Result: 5 Numbers guessed correctly ");         //**  testing only  **/
-
             displayPrizesTree(PrizeData.fiveStarTree.root);                     // displays prizes from tree
 
         } else if ( g2_prize == 6) {                                            // user matched 6 numbers correctly
@@ -1334,8 +1310,6 @@ public class main extends Application {
             displayWinningNumbers();                                            // displays winning numbers
 
             myTab.getTabs().add(tab3);                                          // displays prize tab
-
-            System.out.println("Result: 6 Numbers guessed correctly ");         //**  testing only  **/
 
             displayPrizesTree(PrizeData.sixStarTree.root);                      // displays prizes from tree
 
@@ -1379,8 +1353,6 @@ public class main extends Application {
 
         hBox_User_Numbers.setStyle("-fx-background-color: #ff6666;"); // change background color to red
 
-        System.out.println("Result: user did not correctly guess 4 or more numbers"); // TESTING: prints not a winner to console
-
     }
 
  /* ----------------------------------------------------
@@ -1408,7 +1380,7 @@ public class main extends Application {
 
             prizeButton.setText(node.key);                      // changes text of button to be the key
 
-            vBox_Tab3_bottom.getChildren().add(prizeButton);         // adds button to VBox for prizes
+            vBox_Tab3_bottom.getChildren().add(prizeButton);    // adds button to VBox for prizes
 
             prizeButton.setOnAction(e ->{                       // when clicked
 
@@ -1426,10 +1398,9 @@ public class main extends Application {
 
                 storeWinner(node.prize);                        // store winners details
 
-                prizeButton.setStyle("-fx-background-color: #80ffbf;");   // change background color of prize choosen to green
+                prizeButton.setStyle("-fx-background-color: #80ffbf;"); // change background color of prize choosen to green
                  }
             );
-
             displayPrizesTree(node.rightChild);                // Traverse the right node
 
 
@@ -1444,36 +1415,34 @@ public class main extends Application {
      */
     public void storeWinner(String prize){
 
-        storeWinnerName.setOnAction((ActionEvent e) -> {    // When user enters name in textfield
+        storeWinnerName.setOnAction((ActionEvent e) -> {                         // When user enters name in textfield
 
-            String name = storeName(storeWinnerName);       // store name of winner from textfield
+            String name = storeName(storeWinnerName);                            // store name of winner from textfield
 
-            winner w1 = new winner(name,prize );            // create new winner
+            winner w1 = new winner(name,prize );                                 // create new winner
 
-
-            resetPrizeTab();                                // resets the prize tab
+            resetPrizeTab();                                                     // resets the prize tab
 
             Label winnerDetailsSaved = new Label("Winner's details saved"); // show details saved
 
-            vBox_Tab3_bottom.getChildren().add(winnerDetailsSaved); // show details saved
+            vBox_Tab3_bottom.getChildren().add(winnerDetailsSaved);              // show details saved
 
-            winnerList.getWinnersList().add(w1) ;               // add winner to the winners arrayList
-
+            winnerList.getWinnersList().add(w1) ;                                // add winner to the winners arrayList
             try {
-                winnerList.persistWinnerListToFile();           // save winners details to file
+                winnerList.persistWinnerListToFile();                            // save winners details to file
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-
         });
-
-
     }
 
-
-
+    /**
+     * resetPrizeTab
+     *
+     * resets labels and fields of prize tab
+     *
+     */
     public void resetPrizeTab(){
-
 
         vBox_Tab3_bottom.getChildren().clear();          // remove Vbox children
 
@@ -1482,11 +1451,7 @@ public class main extends Application {
         label_Ask_Winner.setVisible(false);              // hide label asking winner name
 
         storeWinnerName.setVisible(false);               // hide text field for name input
-
     }
-
-
-
  /* ----------------------------------------------------
           Winner tab Methods
     ----------------------------------------------------  */
@@ -1554,20 +1519,20 @@ public class main extends Application {
 
     public void displayWinnerDetails(){
 
-        vBox_WinnersDetails.getChildren().clear();                  // clears vbox
+        vBox_WinnersDetails.getChildren().clear();                          // clears vbox
 
-        for(int i = 0; i < winnerList.getWinnersList().size(); i++ ) {   // loop through all elements of winner arrayList
+        for(int i = 0; i < winnerList.getWinnersList().size(); i++ ) {      // loop through all elements of winner arrayList
 
-            Label DisplayWinner = new Label();                      // creates new button for prize
+            Label DisplayWinner = new Label();                              // creates new button for prize
 
-            DisplayWinner.setMinWidth(100);                         // sets minimum width of prize button
+            DisplayWinner.setMinWidth(100);                                 // sets minimum width of prize button
 
-            DisplayWinner.setMinHeight(45);                         // sets minimum height of prize button
+            DisplayWinner.setMinHeight(45);                                 // sets minimum height of prize button
 
             DisplayWinner.setText(i+1 + "\t" + winnerList.getWinnersList().get(i).getName()
                                    +  "\t\t" + winnerList.getWinnersList().get(i).getPrize()); // changes text of button to be name of winner and index+1
 
-            vBox_WinnersDetails.getChildren().add(DisplayWinner);         // adds label to VBox for winners
+            vBox_WinnersDetails.getChildren().add(DisplayWinner);           // adds label to VBox for winners
 
         }
     }
@@ -1589,7 +1554,7 @@ public class main extends Application {
 
             storeWinnerIndex.clear();                                                   // clear input field of incorrect type entered
         }
-            winnerList.getWinnersList().remove((winnerIndex - 1));                           // removes winner at index : NOT WORKING
+            winnerList.getWinnersList().remove((winnerIndex - 1));                      // removes winner at index : NOT WORKING
 
         storeWinnerIndex.clear();                                                       // clear textfield
 
@@ -1597,8 +1562,6 @@ public class main extends Application {
 
         winnerList.persistWinnerListToFile();                                           // save new list to file
     }
-
-
 
 
 } // close class
