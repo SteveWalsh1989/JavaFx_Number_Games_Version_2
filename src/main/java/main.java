@@ -349,9 +349,16 @@ public class main extends Application {
 
         deleteWinner.getChildren().addAll(label_delete_winner,storeWinnerIndex,deletewinner); // add label and textfield to hbox
 
-        vBox_WinnersDetails = new VBox();                                        // store winners details
+        vBox_WinnersDetails = new VBox();                                             // store winners details
 
-        vBox_tab4.getChildren().addAll(winnerTitle,displayWinnerOptions,deleteWinner,vBox_WinnersDetails); // add all structures to main vbox
+        ScrollPane scrollPane_WinnersDetails = new ScrollPane(vBox_WinnersDetails);   // Create a ScrollPane to add winners details too
+
+
+        scrollPane_WinnersDetails.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);  // always have the vertical scroll bar shown
+
+        scrollPane_WinnersDetails.setMaxHeight(230);                                 // set a max height
+
+        vBox_tab4.getChildren().addAll(winnerTitle,displayWinnerOptions,deleteWinner,scrollPane_WinnersDetails); // add all structures to main vbox
 
         tab4.setContent(vBox_tab4);                                              // set V box
 
