@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Steve on 29/03/2018.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class game1Test {
 
 

@@ -25,7 +25,7 @@ import java.util.stream.Stream;
  **/
 public class winnerList extends ArrayList<winner> implements Serializable{
 
-   public static  ArrayList<winner> winnersList = new ArrayList<>();  // create arrayList to store winners
+    public static  ArrayList<winner> winnersList = new ArrayList<>();  // create arrayList to store winners
 
     static String fileName = "src/docs/winnerList.bin";
 
@@ -41,16 +41,16 @@ public class winnerList extends ArrayList<winner> implements Serializable{
      */
     public static void readWinners()throws Exception{
 
-    try {
-        ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));     // create new input stream to the file
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));     // create new input stream to the file
 
-        setWinnersList((ArrayList) is.readObject());                                     // store winner object in arrayList
+            setWinnersList((ArrayList) is.readObject());                                     // store winner object in arrayList
 
-        is.close();                                                                      // close input stream
+            is.close();                                                                      // close input stream
 
-    } catch (IOException | ClassNotFoundException e  ) {                                   // catch exception if file not found
-    e.printStackTrace();
-    }
+        } catch (IOException | ClassNotFoundException e  ) {                                   // catch exception if file not found
+            e.printStackTrace();
+        }
 
     }
 
