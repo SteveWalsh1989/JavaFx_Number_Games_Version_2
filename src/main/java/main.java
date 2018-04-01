@@ -1446,6 +1446,7 @@ public class main extends Application {
 
             w1.setName(name);                               // set name of winner
 
+
             resetPrizeTab();                                // resets the prize tab
 
             Label winnerDetailsSaved = new Label("Winner's details saved"); // show details saved
