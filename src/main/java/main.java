@@ -211,6 +211,17 @@ public class main extends Application {
         Button g1_guess = new Button("Submit");   // Guess button
         Button g1_clear = new Button("Clear");    // Clear button
 
+
+        HBox game_1_Labels_Structure = new HBox();
+
+        HBox game_1_Number_InputStructure = new HBox();
+
+        HBox game_1_Buttons_Structure  = new HBox();
+
+        VBox game_1_mainStructure = new VBox();
+
+
+
         // labels
         Label num_remaining_guess_label = new Label("You have " + numGuesses + " guesses remaining");
         hintLower = new Label("\t\tLower!!");    // set hint for higher label
@@ -243,7 +254,7 @@ public class main extends Application {
 
         tab1.setText("Number Guessing Game");  // set text of tab
 
-        tab1.setContent(game_1_grid);          // set V box : will add button to this later that will start the game
+        tab1.setContent(game_1_mainStructure);  // set V box : will add button to this later that will start the game
 
         tab1.setClosable(false);               // prevent user from being able to close the tab
 
@@ -371,17 +382,6 @@ public class main extends Application {
              Game 1: Number Guessing Game Layout
          ----------------------------------------------------
              */
-        //-----------------------------
-        //      Grid
-        //-----------------------------
-        game_1_grid.setHgap(10);                                                  // set gaps between horizontal grid panes
-        game_1_grid.setVgap(10);                                                  // set gaps between vertical grid panes
-        game_1_grid.getColumnConstraints().add(new ColumnConstraints(50)); // column 50 wide
-        GridPane.setHalignment(g1_start, HPos.CENTER);                            //
-        GridPane.setHalignment(g1_quit, HPos.CENTER);                             //
-        GridPane.setHalignment(g1_reset, HPos.CENTER);                            // To align vertically in the cell
-        GridPane.setHalignment(g1_clear, HPos.CENTER);                            //
-        GridPane.setHalignment(g1_guess, HPos.CENTER);                            //
 
         //-----------------------------
         //      TextField
@@ -389,22 +389,32 @@ public class main extends Application {
         TextField numberInput = new TextField();                                  // create new text input field
         numberInput.setPromptText("Guess a number 1-100");                        // adding text prompt to text input field
 
-        //-----------------------------
-        //      Button Layout
-        //-----------------------------
-        game_1_grid.add(num_remaining_guess_label, 10, 8,  1, 1); //  label for number of guessing remaining
-        game_1_grid.add(numberInput,               10, 10, 1, 1); //   number input field
-        game_1_grid.add(g1_reset,                  5,  17, 1, 1); //
-        game_1_grid.add(g1_start,                  10, 17, 1, 1); //
-        game_1_grid.add(g1_quit,                   15, 17, 1, 1); // Adding Buttons to grid
-        game_1_grid.add(g1_guess,                  15, 10, 1, 1); //
-        game_1_grid.add(g1_clear,                  5,  10, 1, 1); //
+
 
         //-----------------------------
-        //    labels Layout
+        //   Layout
         //-----------------------------
-        game_1_grid.add(hintHigher, 10, 6, 1, 1);                   // higher label hint
-        game_1_grid.add(hintLower,  10, 6, 1, 1);                   // lower  label hint
+
+
+        game_1_Labels_Structure.setSpacing(25);
+        game_1_Labels_Structure.getChildren().addAll(hintLower, num_remaining_guess_label,hintHigher );
+
+        game_1_Number_InputStructure.setSpacing(25);
+        game_1_Number_InputStructure.setPadding(new Insets(0,0,0,60));
+
+        game_1_Number_InputStructure.getChildren().addAll(g1_clear,numberInput,g1_guess);
+
+        game_1_Buttons_Structure.setSpacing(25);
+        game_1_Buttons_Structure.setPadding(new Insets(0,0,0,80));
+
+        game_1_Buttons_Structure.getChildren().addAll(g1_start,g1_reset,g1_quit );
+
+        game_1_mainStructure.setSpacing(40);
+        game_1_mainStructure.setAlignment(Pos.CENTER);
+        game_1_mainStructure.setPadding(new Insets(0,0,0,70));
+        game_1_mainStructure.getChildren().addAll(game_1_Labels_Structure,game_1_Number_InputStructure,game_1_Buttons_Structure );
+
+
 
         //------------------------------------------
         //   Components visibility at program start
@@ -428,7 +438,7 @@ public class main extends Application {
         //     Start Button    //
         //---------------------//
         g1_start.setOnAction(e -> beginGame(numberInput, num_remaining_guess_label, g1_reset,        // start Button: begins game
-                g1_quit, g1_start, g1_guess, g1_clear, g1_quit, game_1_grid));
+                g1_quit, g1_start, g1_guess, g1_clear, g1_quit, game_1_mainStructure));
 
         //---------------------//
         //     Quit Button     //
@@ -794,10 +804,10 @@ public class main extends Application {
      * @param start_button - start button
      * @param guess_button - guess button
      * @param clear_button - clear button
-     * @param grid         - grid layout
+     * @param game_1_Structure         - grid layout
      */
     private  void beginGame(TextField num, Label label, Button reset_button, Button quit_button, Button start_button,
-                            Button guess_button, Button clear_button,Button g1_quit,  GridPane grid) {
+                            Button guess_button, Button clear_button,Button g1_quit,  VBox game_1_Structure) {
 
         num.setVisible(true);                               // at start have text input hidden
         label.setVisible(true);                             // at start have label  hidden
